@@ -12,6 +12,7 @@ public class BulletSpawner : MonoBehaviour
 
     [Header("Spawner Attributes")]
     [SerializeField] private float firingRate;
+    public bool isHoming;
 
     private GameObject spawnedBullet;
     public float timer = 0f;
@@ -32,9 +33,13 @@ public class BulletSpawner : MonoBehaviour
             timer = 0;
         }
 
-        Vector3 dir = playermovement.transform.position -transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if(isHoming == true)
+        {
+            Vector3 dir = playermovement.transform.position - transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+    
         Debug.Log(playermovement);
     }
 
