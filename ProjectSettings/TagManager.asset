@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerBullet
   - EnemyBullet
+  - TimeDamage
   layers:
   - Default
   - TransparentFX
