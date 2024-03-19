@@ -51,7 +51,13 @@ public class ElecticBarrier : MonoBehaviour
                     transform.Translate(new Vector3(-speed * Time.deltaTime, 0));
                 }
             }
-           
+            else
+            {
+                if (electricBarrier.transform.localScale.y < 30)
+                {
+                    electricBarrier.transform.localScale += new Vector3(0, 20 * Time.deltaTime, 0);
+                }
+            }
            
         }
 
@@ -61,6 +67,8 @@ public class ElecticBarrier : MonoBehaviour
             checkWall = true;
             electricBarrier.SetActive(true);
             vulnerable = true;
+           
+            
         }
 
         

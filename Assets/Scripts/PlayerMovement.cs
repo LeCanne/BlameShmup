@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public int PlayerHealth;
     public bool keepDamage;
     public float timerdamage;
+    public GameObject shooter;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         float inputY = Input.GetAxisRaw("Vertical");
@@ -47,12 +48,14 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
             SpriteRend.flipX = false;
+            shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
         }
         if (onleft == false & transform.position != right.position)
         {
 
             transform.position = Vector3.Lerp(transform.position, right.position, Time.deltaTime / 0.05f);
             SpriteRend.flipX = true;
+            shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
         }
 
     }

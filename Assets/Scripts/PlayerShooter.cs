@@ -42,7 +42,7 @@ public class PlayerShooter : MonoBehaviour
         {
             Vector3 dir = mousePosition - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            twistPoint.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         else
         {
