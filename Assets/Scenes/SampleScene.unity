@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 532070028}
   - component: {fileID: 532070027}
   - component: {fileID: 532070026}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1639,7 +1639,7 @@ GameObject:
   - component: {fileID: 1713138345}
   - component: {fileID: 1713138344}
   - component: {fileID: 1713138343}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1923,6 +1923,7 @@ GameObject:
   - component: {fileID: 2018563501}
   - component: {fileID: 2018563500}
   - component: {fileID: 2018563502}
+  - component: {fileID: 2018563503}
   m_Layer: 0
   m_Name: BarrierEnemy
   m_TagString: Untagged
@@ -2011,9 +2012,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   electricBarrier: {fileID: 1391345816}
+  layer:
+    serializedVersion: 2
+    m_Bits: 8
   timer: 0
   speed: 5
   randomDir: 0
+  vulnerable: 0
+  health: 30
+--- !u!61 &2018563503
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018563499}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.21133333}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
