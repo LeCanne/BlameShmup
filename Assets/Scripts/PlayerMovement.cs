@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.tag == "EnemyBullet")
         {
             PlayerHealth--;
+            Destroy(collision);
         }
     }
 }

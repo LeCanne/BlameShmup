@@ -10,6 +10,7 @@ public class NormalBug : MonoBehaviour
     Vector2 startPos;
     public float attacktimer;
     public int healthPoints;
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,24 +31,17 @@ public class NormalBug : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(new Vector3(0, 1 * Time.deltaTime, 0));
+        transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
     }
 
     private void Attack()
     {
-        attacktimer += Time.deltaTime;
-        if(attacktimer > 2f && attacktimer < 5f)
-        {
+       
+       
           
             bulletSpawner.enabled = true;
-        }
-        else if (attacktimer > 5f)
-        {
-            bulletSpawner.enabled = false;
-            attacktimer = 0f;
-            bulletSpawner.timer = 0;
-
-        }
+        
+        
     }
 
     public void Shake()

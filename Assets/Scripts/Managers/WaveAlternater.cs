@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveSpawner : MonoBehaviour
+public class WaveAlternater : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject enemy, AlternateEnemy;
     public float rate;
-    
+    public bool takeOther;
     public int waves;
     private bool wavebool;
     public float startWave;
@@ -27,8 +27,16 @@ public class WaveSpawner : MonoBehaviour
     {
         if (wavebool == true)
         {
-
-            Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation);
+            takeOther = !takeOther;
+            if(takeOther == true)
+            {
+                Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation);
+            }
+            else
+            {
+                Instantiate(AlternateEnemy, gameObject.transform.position, gameObject.transform.rotation);
+            }
+         
 
 
         }

@@ -27,9 +27,12 @@ public class WaveManager : MonoBehaviour
         timer += Time.deltaTime;
         if(wavemanagement == true && loader == true)
         {
-            if(wavenumber <= waves.Length)
-            waves[wavenumber].SetActive(true);
-            wavemanagement = false;
+            if(wavenumber < waves.Length)
+            {
+                waves[wavenumber].SetActive(true);
+                wavemanagement = false;
+            }
+           
         }
 
         if (wavenumber >= 28)

@@ -2,22 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveSpawner : MonoBehaviour
+public class SecondaryWave : MonoBehaviour
 {
+    // Start is called before the first frame update
     public GameObject enemy;
     public float rate;
-    
     public int waves;
-    private bool wavebool;
+    private bool wavebool = false;
     public float startWave;
     public float endWave;
-    private SpriteRenderer sprRend;
-    public float nextwave;
+    
     // Start is called before the first frame update
     void Start()
     {
-        sprRend = GetComponent<SpriteRenderer>();
-        sprRend.enabled = false;
         StartCoroutine(Enemytimer());
         InvokeRepeating("SpawnEnemy", 0, rate);
     }
@@ -27,27 +24,20 @@ public class WaveSpawner : MonoBehaviour
     {
         if (wavebool == true)
         {
-
             Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation);
-
-
         }
+           
+               
     }
 
     IEnumerator Enemytimer()
     {
-      
+        yield return new WaitForSeconds(startWave);
         wavebool = true;
         yield return new WaitForSeconds(endWave);
         wavebool = false;
-        yield return new WaitForSeconds(nextwave);
-        WaveManager.wavenumber += 1;
-        WaveManager.wavemanagement = true;
+        
         
         gameObject.SetActive(false);
-
-
-
-
     }
 }
