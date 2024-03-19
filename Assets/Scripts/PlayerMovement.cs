@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D rb;
+    private SpriteRenderer SpriteRend;
     public bool onleft = true;
     public Transform left, right;
     public int PlayerHealth;
@@ -15,13 +16,14 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
+        SpriteRend = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         float inputY = Input.GetAxisRaw("Vertical");
         rb.MovePosition(rb.position + new Vector2(0, inputY) * speed * Time.fixedDeltaTime);
 
@@ -41,20 +43,23 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-            if(onleft == true && transform.position != left.position)
-            {
-              transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
-            }
-            if(onleft == false & transform.position != right.position)
-            {
-              transform.position = Vector3.Lerp(transform.position, right.position,  Time.deltaTime / 0.05f);
-            }
-        
+        if (onleft == true && transform.position != left.position)
+        {
+            transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
+            SpriteRend.flipX = false;
+        }
+        if (onleft == false & transform.position != right.position)
+        {
+
+            transform.position = Vector3.Lerp(transform.position, right.position, Time.deltaTime / 0.05f);
+            SpriteRend.flipX = true;
+        }
+
     }
 
     public void CheckHealth()
     {
-        if(PlayerHealth <= 0)
+        if (PlayerHealth <= 0)
         {
             Destroy(gameObject);
         }
@@ -62,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         //Damage over time
 
         timerdamage += Time.deltaTime;
-        if(timerdamage > 2 && keepDamage == true)
+        if (timerdamage > 2 && keepDamage == true)
         {
             PlayerHealth--;
             timerdamage = 0;
@@ -70,22 +75,22 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "EnemyBullet")
+        if (collision.gameObject.tag == "EnemyBullet")
         {
             PlayerHealth--;
             Destroy(collision.gameObject);
         }
 
-        if(collision.gameObject.tag == "TimeDamage")
+        if (collision.gameObject.tag == "TimeDamage")
         {
             keepDamage = true;
 
         }
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    public void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.tag == "TimeDamage")
         {
@@ -94,5 +99,32 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "EnemyBullet")
+        {
+            PlayerHealth--;
+            Destroy(collision.gameObject);
+        }
 
+        if (collision.gameObject.tag == "TimeDamage")
+        {
+            keepDamage = true;
+
+        }
+
+
+
+
+
+    }
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.tag == "TimeDamage")
+        {
+            keepDamage = false;
+
+        }
+    }
 }
