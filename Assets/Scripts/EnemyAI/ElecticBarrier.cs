@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class ElecticBarrier : MonoBehaviour
+public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
 {
     public GameObject electricBarrier;
     public LayerMask layer;
@@ -73,14 +73,21 @@ public class ElecticBarrier : MonoBehaviour
 
         
     }
-
+    
+    
     public void CheckHP()
     {
-        if(health <= 0)
+        if (health <= 0)
         {
-            Destroy(gameObject);
+            isDead();
+            gameObject.SetActive(false);
+          
+            
         }
+
+        
     }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         if(vulnerable == true)
@@ -92,5 +99,16 @@ public class ElecticBarrier : MonoBehaviour
             }
         }
        
+    }
+
+    public bool isDead()
+    {
+        if(health <= 0)
+        {
+            return true;
+
+        }
+        else
+            return false;
     }
 }

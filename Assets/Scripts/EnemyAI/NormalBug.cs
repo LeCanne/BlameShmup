@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class NormalBug : MonoBehaviour
+public class NormalBug : MonoBehaviour, InterfaceEnemy
 {
     public BulletSpawner bulletSpawner;
     Vector2 startPos;
@@ -59,6 +59,7 @@ public class NormalBug : MonoBehaviour
     {
         if(healthPoints <= 0)
         {
+            isDead();
             gameObject.SetActive(false);
         }
     }
@@ -71,5 +72,15 @@ public class NormalBug : MonoBehaviour
             healthPoints--;
             Destroy(other.gameObject);
         }
+    }
+
+    public bool isDead()
+    {
+        if (healthPoints <= 0)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 }
