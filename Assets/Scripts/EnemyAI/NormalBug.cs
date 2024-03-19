@@ -9,6 +9,7 @@ public class NormalBug : MonoBehaviour
     public BulletSpawner bulletSpawner;
     Vector2 startPos;
     public float attacktimer;
+    public int healthPoints;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class NormalBug : MonoBehaviour
         Shake();
         Move();
         Attack();
+        CheckHP();
     }
 
     private void Move()
@@ -57,5 +59,23 @@ public class NormalBug : MonoBehaviour
             transformed.x = startPos.x + Mathf.Sin(Time.time * speed) * amount;
         
         transform.position = transformed;
+    }
+
+    public void CheckHP()
+    {
+        if(healthPoints <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+       
+        if(other.gameObject.tag == "PlayerBullet")
+        {
+            healthPoints--;
+            Destroy(other.gameObject);
+        }
     }
 }

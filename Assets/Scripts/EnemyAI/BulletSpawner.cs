@@ -40,7 +40,7 @@ public class BulletSpawner : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     
-        Debug.Log(playermovement);
+       
     }
 
     private void Fire()

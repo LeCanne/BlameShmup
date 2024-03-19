@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     public bool onleft = true;
     public Transform left, right;
+    public int PlayerHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         Grapple();
+        CheckHealth();
     }
 
     public void Grapple()
@@ -43,5 +45,22 @@ public class PlayerMovement : MonoBehaviour
               transform.position = Vector3.Lerp(transform.position, right.position,  Time.deltaTime / 0.05f);
             }
         
+    }
+
+    public void CheckHealth()
+    {
+        if(PlayerHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "EnemyBullet")
+        {
+            PlayerHealth--;
+        }
     }
 }
