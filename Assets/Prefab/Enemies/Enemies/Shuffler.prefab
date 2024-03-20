@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6380083061682596924}
   - component: {fileID: 4787805839340319216}
   m_Layer: 0
-  m_Name: Hexagon Pointed-Top
+  m_Name: Shuffler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

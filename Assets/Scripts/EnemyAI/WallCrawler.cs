@@ -9,6 +9,7 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
 
     [Header ("AttackProcess")]
     public bool shotSide, ShotProcess;
+    public bool Positioned;
     public GameObject Shot1, Shot2;
     
     public float TimerSwitch;
@@ -16,6 +17,7 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
     [Header ("GeneralProcess")]
     public BossBodyPart head;
     public int Health;
+    public float TimerBegin;
 
     [Header("HeadMovement")]
     public Transform A;
@@ -25,6 +27,7 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
 
     private Transform current;
     private Transform target;
+    private Vector3 beginPos;
 
     private float sinTime;
 
@@ -32,6 +35,7 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
     // Start is called before the first frame update
     void Start()
     {
+        beginPos = transform.position;
         current = A;
             target = B;
     }
@@ -39,6 +43,18 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
     // Update is called once per frame
     void Update()
     {
+        //Begins
+        TimerBegin += Time.deltaTime;
+        if(TimerBegin >= 2)
+        {
+            Positioned = true;
+            head.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3(beginPos.x, beginPos.y - 5, beginPos.z), Time.deltaTime/1);
+        }
+
         Attack();
         CheckHP();
         HeadMovement();
@@ -47,14 +63,18 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
 
     public void HeadMovement()
     {
-        if (head.transform.position != target.position)
+        if(Positioned == true)
         {
-            sinTime += Time.deltaTime * moveSpeed;
-            sinTime = Mathf.Clamp(sinTime, 0, Mathf.PI);
-            float t = evaluate(sinTime);
-            head.transform.position = Vector3.Lerp(current.position, target.position, t);
+            if (head.transform.position != target.position)
+            {
+                sinTime += Time.deltaTime * moveSpeed;
+                sinTime = Mathf.Clamp(sinTime, 0, Mathf.PI);
+                float t = evaluate(sinTime);
+                head.transform.position = Vector3.Lerp(current.position, target.position, t);
+            }
+            swap();
         }
-        swap();
+     
     }
 
     public float evaluate(float x)
@@ -77,40 +97,44 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
 
     public void Attack()
     {
-        TimerSwitch += Time.deltaTime;
-      
-        if (TimerSwitch > 2)
+        if(Positioned == true)
         {
-            if (ShotProcess == false)
+            TimerSwitch += Time.deltaTime;
+
+            if (TimerSwitch > 2)
             {
-
-
-
-                shotSide = !shotSide;
-
-                if (shotSide == false)
+                if (ShotProcess == false)
                 {
-                    Shot1.SetActive(true);
-                    Shot2.SetActive(false);
+
+
+
+                    shotSide = !shotSide;
+
+                    if (shotSide == false)
+                    {
+                        Shot1.SetActive(true);
+                        Shot2.SetActive(false);
+                    }
+                    else
+                    {
+                        Shot2.SetActive(true);
+                        Shot1.SetActive(false);
+                    }
+                    ShotProcess = true;
                 }
-                else
-                {
-                    Shot2.SetActive(true);
-                    Shot1.SetActive(false);
-                }
-                ShotProcess = true;
-            }
 
                 if (TimerSwitch > 3f)
                 {
                     TimerSwitch = 0;
                     Shot2.SetActive(false);
                     Shot1.SetActive(false);
-                   ShotProcess = false;
+                    ShotProcess = false;
                 }
-            
-            
+
+
+            }
         }
+       
     }
 
     public void CheckHP()

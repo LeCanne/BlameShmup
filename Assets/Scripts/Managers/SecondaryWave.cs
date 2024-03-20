@@ -11,21 +11,30 @@ public class SecondaryWave : MonoBehaviour
     private bool wavebool = false;
     public float startWave;
     public float endWave;
+    public float timerspawn;
+    public float requiredTime;
     
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Enemytimer());
-        InvokeRepeating("SpawnEnemy", 0, rate);
+        
     }
 
-    // Update is called once per frame
-    void SpawnEnemy()
+    
+    void Update()
     {
-        if (wavebool == true)
+        timerspawn += Time.deltaTime;
+
+        if(requiredTime < timerspawn)
         {
-            Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation);
+            if (wavebool == true)
+            {
+                Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation);
+            }
+            timerspawn = 0;
         }
+        
            
                
     }

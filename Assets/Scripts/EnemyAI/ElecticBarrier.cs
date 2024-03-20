@@ -15,6 +15,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
     public bool vulnerable;
     public int health;
     public int score;
+    public float maxScale;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +55,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
             }
             else
             {
-                if (electricBarrier.transform.localScale.y < 30)
+                if (electricBarrier.transform.localScale.y < maxScale)
                 {
                     electricBarrier.transform.localScale += new Vector3(0, 20 * Time.deltaTime, 0);
                 }

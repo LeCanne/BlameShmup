@@ -239,6 +239,7 @@ MonoBehaviour:
   vulnerable: 1
   health: 3
   score: 20
+  maxScale: 2
 --- !u!61 &5519740956721382188
 BoxCollider2D:
   m_ObjectHideFlags: 0
