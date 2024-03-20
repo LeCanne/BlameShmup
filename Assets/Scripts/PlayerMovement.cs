@@ -49,13 +49,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (onleft == true && transform.position != left.position)
+        if (onleft == true && transform.position.x != left.position.x)
         {
             transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
             SpriteRend.flipX = false;
             shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
         }
-        if (onleft == false & transform.position != right.position)
+        if (onleft == false & transform.position.x != right.position.x)
         {
 
             transform.position = Vector3.Lerp(transform.position, right.position, Time.deltaTime / 0.05f);
