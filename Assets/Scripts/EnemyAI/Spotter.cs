@@ -7,11 +7,14 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
 {
     public BulletSpawner spawner, one,two;
     public Transform playerPos;
+    public GameObject currentShield, Shield1, Shield2;
+
     public float timerbullet;
     public int healthPoint;
     public bool newPos = true, firstcheck = true;
     private Vector3 newposition;
     public float distance = 1;
+    public bool inBound;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +24,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
     // Update is called once per frame
     void Update()
     {
-      
+      CheckHP();
         timerbullet += Time.deltaTime;
         Vector3 v = transform.position;
         if (firstcheck == true)
@@ -38,7 +41,13 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
         {
             if (timerbullet >= 2)
             {
+                inBound = false;
                 spawner.enabled = false;
+                if(currentShield != null)
+                {
+                    currentShield.SetActive(false);
+                }
+                
                 if (newPos == true)
                 {
                     newposition = playerPos.transform.position;
@@ -49,24 +58,35 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
                 transform.position = Vector3.Lerp(v, new Vector3(v.x, newposition.y, v.z), Time.deltaTime / 0.2f);
 
                 if (distance < 0.5f)
+
                 {
+                   
+                    if(currentShield != null)
+                    {
+                        currentShield.SetActive(false);
+                    }
+                   
                     if (playerPos.transform.position.x > transform.position.x)
                     {
                         spawner = one;
+                        currentShield = Shield1;
 
                     }
                     else
                     {
+                        currentShield = Shield2;
                         spawner = two;
                     }
+                    currentShield.SetActive(true);
                     spawner.enabled = true;
                     newPos = true;
                     firstcheck=true;
                     timerbullet = 0;
-                   
-                    
-                    
-                    
+                    inBound = true;
+
+
+
+
                 }
 
             }
@@ -76,6 +96,14 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
            
         }
        
+    }
+    public void CheckHP()
+    {
+        if (healthPoint <= 0)
+        {
+            isDead();
+            gameObject.SetActive(false);
+        }
     }
 
     public bool isDead()
@@ -88,5 +116,18 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
         {
             return false;
         }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if(inBound == true)
+        {
+            if (other.gameObject.tag == "PlayerBullet")
+            {
+                healthPoint--;
+                Destroy(other.gameObject);
+            }
+        }
+       
     }
 }
