@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2790273241196106823}
   - component: {fileID: 2371485866844134354}
   - component: {fileID: 2709113986651286409}
+  - component: {fileID: 3350280412118737749}
   m_Layer: 0
   m_Name: Spotter
   m_TagString: Untagged
@@ -58,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 7d215aabedd88634c87896b65ac6b95b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -161,6 +162,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.72976255, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &3350280412118737749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243686243386232781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40dd22ed0af5b2544ac5d72c1b2bb7c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashtime: 0.1
 --- !u!1 &2018439273020903681
 GameObject:
   m_ObjectHideFlags: 0

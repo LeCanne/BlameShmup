@@ -8,6 +8,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
     public BulletSpawner spawner, one,two;
     public Transform playerPos;
     public GameObject currentShield, Shield1, Shield2;
+    private FlashEnemy flashEnemy;
 
     public float timerbullet;
     public int healthPoint;
@@ -19,6 +20,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
     // Start is called before the first frame update
     void Start()
     {
+        flashEnemy = GetComponent<FlashEnemy>();
         if(GameObject.FindWithTag("Player") != null)
         {
             playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -131,6 +133,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
             if (other.gameObject.tag == "PlayerBullet")
             {
                 healthPoint--;
+                flashEnemy.CallDamageFlash();
                 Destroy(other.gameObject);
             }
         }
