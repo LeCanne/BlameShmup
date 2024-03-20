@@ -13,13 +13,14 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
     public int healthPoints;
     public float speed;
     public int Score;
+    private FlashEnemy flashenemy;
     // Start is called before the first frame update
     void Start()
     {
         bulletSpawner.enabled = false;
         startPos.x = transform.position.x;
         bulletSpawner.timer = 0;
-
+        flashenemy = GetComponent<FlashEnemy>();
     }
 
     // Update is called once per frame
@@ -78,6 +79,7 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
         if(other.gameObject.tag == "PlayerBullet")
         {
             healthPoints--;
+            flashenemy.CallDamageFlash();
             Destroy(other.gameObject);
         }
     }

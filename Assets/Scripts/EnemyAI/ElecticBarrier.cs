@@ -16,11 +16,14 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
     public int health;
     public int score;
     public float maxScale;
+
+    private FlashEnemy flashEnemy;
     // Start is called before the first frame update
     void Start()
     {
         randomDir = Random.Range(1, 3);
         randomTime = Random.Range(1f, 3f);
+        flashEnemy = GetComponent<FlashEnemy>();
     }
 
     // Update is called once per frame
@@ -98,6 +101,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
             if (other.gameObject.tag == "PlayerBullet")
             {
                 health--;
+                flashEnemy.CallDamageFlash();
                 Destroy(other.gameObject);
             }
         }
@@ -109,6 +113,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
         if(health <= 0)
         {
             return true;
+           
 
         }
         else

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Android;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D rb;
     private SpriteRenderer SpriteRend;
+    public SpriteRenderer Wheels;
     public bool onleft = true;
     public Transform left, right;
     public int PlayerHealth;
@@ -44,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Grapple()
     {
-        if (Input.GetButtonDown("Fire1") && cooldown <= 0)
+        if ((Input.GetButtonDown("Fire2") && cooldown <= 0))
         {
             onleft = !onleft;
             cooldown = 0.5f;
@@ -54,26 +56,30 @@ public class PlayerMovement : MonoBehaviour
             cooldown -= Time.deltaTime;
         }
 
+        float wow = Vector3.Distance(new Vector2(transform.position.x,0), new Vector2(left.position.x,0));
+        float waw = Vector3.Distance(new Vector2(transform.position.x, 0), new Vector2(right.position.x, 0));
+        if (onleft == true && wow > 0.1f)
+        {
+            transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
+            SpriteRend.flipX = false;
+            Wheels.flipX = false;
+            shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
+        }
+        if (onleft == false & waw > 0.1f)
+        {
 
-        if (onleft == true && transform.position.x != left.position.x)
-            {
-                transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
-                SpriteRend.flipX = false;
-                shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
-            }
-            if (onleft == false & transform.position.x != right.position.x)
-            {
-
-                transform.position = Vector3.Lerp(transform.position, right.position, Time.deltaTime / 0.05f);
-                SpriteRend.flipX = true;
-                shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
-            }
+            transform.position = Vector3.Lerp(transform.position, right.position, Time.deltaTime / 0.05f);
+            SpriteRend.flipX = true;
+            Wheels.flipX = true;
+            shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
+        }
+    }
             
         
        
       
 
-    }
+
 
     public void CheckHealth()
     {

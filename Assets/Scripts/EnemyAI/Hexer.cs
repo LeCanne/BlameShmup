@@ -12,10 +12,13 @@ public class Hexer : MonoBehaviour, InterfaceEnemy
     private Transform centerPos;
     public float timer;
     public int Score;
+
+    private FlashEnemy flashenemy;
     // Start is called before the first frame update
     void Start()
     {
         centerPos = GameObject.FindWithTag("Center").transform;
+        flashenemy = GetComponent<FlashEnemy>();
     }
 
     // Update is called once per frame
@@ -82,6 +85,7 @@ public class Hexer : MonoBehaviour, InterfaceEnemy
         if (collision.gameObject.tag == "PlayerBullet")
         {
             health--;
+            flashenemy.CallDamageFlash();
             Destroy(collision.gameObject);
         }
     }

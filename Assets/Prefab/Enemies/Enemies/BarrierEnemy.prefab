@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 8090286186349868823}
   - component: {fileID: 9093605742075483048}
   - component: {fileID: 5519740956721382188}
+  - component: {fileID: 4851326356802165333}
   m_Layer: 0
   m_Name: BarrierEnemy
   m_TagString: Untagged
@@ -285,3 +286,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4851326356802165333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7236728054561704234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40dd22ed0af5b2544ac5d72c1b2bb7c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1024, g: 1024, b: 1024, a: 1}
+  flashtime: 0.1
