@@ -45,7 +45,7 @@ public class WaveKiller : MonoBehaviour
             }
         }
 
-        if(timer > 2)
+        if(timer > nextwave)
 
         {
             WaveManager.wavenumber += 1;

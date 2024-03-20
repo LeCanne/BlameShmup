@@ -33,7 +33,7 @@ public class BulletSpawner : MonoBehaviour
             timer = 0;
         }
 
-        if(isHoming == true)
+        if(isHoming == true && playermovement != null)
         {
             Vector3 dir = playermovement.transform.position - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

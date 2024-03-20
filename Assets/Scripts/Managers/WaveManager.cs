@@ -10,6 +10,7 @@ public class WaveManager : MonoBehaviour
     public GameObject[] waves;
     public static bool wavemanagement = true;
     public static int wavenumber = 0;
+    public int wavenumber2 = 0;
 
     private bool loader = false;
     public AudioSource musicmanager;
@@ -18,7 +19,7 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(Loading());
-        
+        wavenumber = wavenumber2 - 1;
     }
 
     // Update is called once per frame

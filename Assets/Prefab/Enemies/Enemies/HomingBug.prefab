@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 4795972954115694498, guid: af376683e8615ac4cab3cf4e3a93d65b, type: 3}
   bulletLife: 2
-  speed: 20
-  firingRate: 0.2
-  isHoming: 0
+  speed: 10
+  firingRate: 1
+  isHoming: 1
   timer: 0
 --- !u!1 &8317660679380723227
 GameObject:
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 8312630324597631260}
   - component: {fileID: 8526862855865340127}
   m_Layer: 0
-  m_Name: BasicBug Left
+  m_Name: HomingBug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,9 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpawner: {fileID: 2204679724157731745}
+  deathTimer: 0
   attacktimer: 0
   healthPoints: 5
-  speed: 5
+  speed: 3
+  Score: 150
 --- !u!212 &3240033655597184568
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -144,7 +146,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: d234f02d86960044294165a3aff09d62, type: 3}
-  m_Color: {r: 0.12452829, g: 0.12452829, b: 0.12452829, a: 1}
+  m_Color: {r: 0.4943396, g: 0.07451547, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

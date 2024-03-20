@@ -8,9 +8,11 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
 {
     public BulletSpawner bulletSpawner;
     Vector2 startPos;
+    public float deathTimer;
     public float attacktimer;
     public int healthPoints;
     public float speed;
+    public int Score;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,11 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
     // Update is called once per frame
     void Update()
     {
+        deathTimer += Time.deltaTime;
+        if(deathTimer > 10)
+        {
+            healthPoints = 0;
+        }
         Shake();
         Move();
         Attack();
@@ -60,6 +67,7 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
         if(healthPoints <= 0)
         {
             isDead();
+            ScoreManager.Score += Score;
             gameObject.SetActive(false);
         }
     }

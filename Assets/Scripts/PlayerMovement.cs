@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public bool onleft = true;
     public Transform left, right;
     public int PlayerHealth;
+    public float cooldown;
     public bool keepDamage;
     public float timerdamage;
     public GameObject shooter;
@@ -43,25 +44,34 @@ public class PlayerMovement : MonoBehaviour
 
     public void Grapple()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && cooldown <= 0)
         {
             onleft = !onleft;
+            cooldown = 0.5f;
+        }
+        else
+        {
+            cooldown -= Time.deltaTime;
         }
 
 
         if (onleft == true && transform.position.x != left.position.x)
-        {
-            transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
-            SpriteRend.flipX = false;
-            shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
-        }
-        if (onleft == false & transform.position.x != right.position.x)
-        {
+            {
+                transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
+                SpriteRend.flipX = false;
+                shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
+            }
+            if (onleft == false & transform.position.x != right.position.x)
+            {
 
-            transform.position = Vector3.Lerp(transform.position, right.position, Time.deltaTime / 0.05f);
-            SpriteRend.flipX = true;
-            shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
-        }
+                transform.position = Vector3.Lerp(transform.position, right.position, Time.deltaTime / 0.05f);
+                SpriteRend.flipX = true;
+                shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
+            }
+            
+        
+       
+      
 
     }
 

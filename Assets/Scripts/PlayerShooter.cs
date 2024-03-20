@@ -79,7 +79,7 @@ public class PlayerShooter : MonoBehaviour
     public void Shooting()
     {
         timerProjectile += Time.deltaTime;
-        if ((Input.GetButton("Fire2") || Input.GetAxis("Fire2") == 1) && projectileCooldown <= timerProjectile)
+        if ((Input.GetButton("Fire2") || Input.GetAxis("VerticalJoystick") != 0 || Input.GetAxis("HorizontalJoystick") != 0) && projectileCooldown <= timerProjectile)
         {
             spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
             spawnedBullet.GetComponent<Bullet>().speed = speed;

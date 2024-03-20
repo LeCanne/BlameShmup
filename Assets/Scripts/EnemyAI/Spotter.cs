@@ -15,10 +15,15 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
     private Vector3 newposition;
     public float distance = 1;
     public bool inBound;
+    public int score;
     // Start is called before the first frame update
     void Start()
     {
-        playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        if(GameObject.FindWithTag("Player") != null)
+        {
+            playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        }
+       
     }
 
     // Update is called once per frame
@@ -102,6 +107,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
         if (healthPoint <= 0)
         {
             isDead();
+            ScoreManager.Score += score;
             gameObject.SetActive(false);
         }
     }

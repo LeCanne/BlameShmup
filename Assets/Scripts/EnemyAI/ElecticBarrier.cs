@@ -14,6 +14,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
     private float randomTime;
     public bool vulnerable;
     public int health;
+    public int score;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +81,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
         if (health <= 0)
         {
             isDead();
+            ScoreManager.Score += score;
             gameObject.SetActive(false);
           
             

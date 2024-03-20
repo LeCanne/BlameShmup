@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public class Hexer : MonoBehaviour
+public class Hexer : MonoBehaviour, InterfaceEnemy
 {
     public float speed;
     bool initate;
+    public float health;
     public GameObject[] Shooters;
     private Transform centerPos;
     public float timer;
+    public int Score;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,10 @@ public class Hexer : MonoBehaviour
                 initate = true;
             }
            
+            
         }
+
+        CheckHP();
        
     }
 
@@ -48,6 +53,36 @@ public class Hexer : MonoBehaviour
         if (timer < 2)
         {
             transform.position = Vector3.Lerp(transform.position, new Vector2(centerPos.transform.position.x, centerPos.transform.position.y), 10 * Time.deltaTime);
+        }
+    }
+
+    public void CheckHP()
+    {
+        if (health <= 0)
+        {
+            isDead();
+            ScoreManager.Score += Score;
+            gameObject.SetActive(false);
+        }
+    }
+    public bool isDead()
+    {
+        if (health <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+            health--;
+            Destroy(collision.gameObject);
         }
     }
 }
