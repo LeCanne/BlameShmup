@@ -69,7 +69,7 @@ public class PlayerShooter : MonoBehaviour
                     homeRotation = Vector3.zero;
                 }
 
-                twistPoint.transform.localEulerAngles = Vector3.Slerp(currentRotation, homeRotation, Time.deltaTime * 3);
+                //twistPoint.transform.localEulerAngles = Vector3.Slerp(currentRotation, homeRotation, Time.deltaTime * 3);
             }
 
             else

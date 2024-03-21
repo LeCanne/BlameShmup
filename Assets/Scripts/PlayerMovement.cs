@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer SpriteRend;
     public AudioSource dash;
     public AudioSource damage;
-    public SpriteRenderer Wheels;
+    public SpriteRenderer Wheels, arm;
     public bool onleft = true;
     public Transform left, right;
     public int PlayerHealth;
@@ -23,11 +23,13 @@ public class PlayerMovement : MonoBehaviour
     public GameObject shooter;
     public GameObject particle1, particle2;
     public float timer;
+    private Collider2D collider;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         SpriteRend = GetComponent<SpriteRenderer>();
+        collider = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -53,6 +55,12 @@ public class PlayerMovement : MonoBehaviour
             Invincibility();
             timer += Time.deltaTime;
         }
+        else
+        {
+            transform.Rotate(0, 0, 20 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(0, -20, 0), 1 * Time.deltaTime);
+            collider.enabled = false;
+        }
         
     }
 
@@ -77,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
             SpriteRend.flipX = false;
+            arm.flipY = true;
             Wheels.flipX = false;
             shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
         }
@@ -86,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, right.position, Time.deltaTime / 0.05f);
             SpriteRend.flipX = true;
             Wheels.flipX = true;
+            arm.flipY = false;
             shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
         }
     }
@@ -102,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         {
             alive = false;
             timeManager.lost = true;
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
             
         }
 

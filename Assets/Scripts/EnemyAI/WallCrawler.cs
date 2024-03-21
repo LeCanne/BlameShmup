@@ -30,6 +30,7 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
     private Vector3 beginPos;
 
     private float sinTime;
+    private FlashEnemy flashEnemy;
 
 
     // Start is called before the first frame update

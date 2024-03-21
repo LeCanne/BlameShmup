@@ -5,9 +5,10 @@ using UnityEngine;
 public class BossBodyPart : MonoBehaviour
 {
     public int HP;
+    private FlashEnemy flashEnemy;
     void Start()
     {
-        
+        flashEnemy = GetComponent<FlashEnemy>();
     }
 
     // Update is called once per frame
@@ -22,6 +23,7 @@ public class BossBodyPart : MonoBehaviour
         {
             Destroy(other.gameObject);
             HP--;
+            flashEnemy.CallDamageFlash();
         }
     }
 }

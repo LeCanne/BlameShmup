@@ -2901,7 +2901,7 @@ MonoBehaviour:
   - {fileID: 1428797350}
   - {fileID: 666531697}
   WinScreen: {fileID: 1747664815}
-  wavenumber2: 1
+  wavenumber2: 8
   musicmanager: {fileID: 0}
 --- !u!4 &573535638
 Transform:
@@ -15763,6 +15763,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1035928838}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1334768592 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4443740668356034522, guid: 2547ed97b8c2dca4a8196cf78b15e829, type: 3}
+  m_PrefabInstance: {fileID: 1778103806}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1372099889
 GameObject:
   m_ObjectHideFlags: 0
@@ -17039,6 +17044,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1980775260980653117, guid: 2547ed97b8c2dca4a8196cf78b15e829, type: 3}
+      propertyPath: arm
+      value: 
+      objectReference: {fileID: 1334768592}
+    - target: {fileID: 1980775260980653117, guid: 2547ed97b8c2dca4a8196cf78b15e829, type: 3}
       propertyPath: dash
       value: 
       objectReference: {fileID: 459222171}
@@ -17156,6 +17165,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4375774990999524938, guid: 2547ed97b8c2dca4a8196cf78b15e829, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443740668356034522, guid: 2547ed97b8c2dca4a8196cf78b15e829, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443740668356034522, guid: 2547ed97b8c2dca4a8196cf78b15e829, type: 3}
+      propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4840015050195222691, guid: 2547ed97b8c2dca4a8196cf78b15e829, type: 3}
