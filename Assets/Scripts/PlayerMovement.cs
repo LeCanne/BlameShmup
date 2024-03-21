@@ -7,6 +7,8 @@ using UnityEngine.InputSystem.Android;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
+    private bool alive = true;
+    public TimeManager timeManager;
     private Rigidbody2D rb;
     private SpriteRenderer SpriteRend;
     public SpriteRenderer Wheels;
@@ -42,10 +44,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Grapple();
-        CheckHealth();
-        Invincibility();
-        timer += Time.deltaTime;
+        if(alive == true)
+        {
+            Grapple();
+            CheckHealth();
+            Invincibility();
+            timer += Time.deltaTime;
+        }
+        
     }
 
     public void Grapple()
@@ -91,7 +97,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (PlayerHealth <= 0)
         {
-            Destroy(gameObject);
+            alive = false;
+            timeManager.lost = true;
+            gameObject.SetActive(false);
+            
         }
 
         //Damage over time
