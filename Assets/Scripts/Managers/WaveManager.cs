@@ -8,6 +8,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     public GameObject[] waves;
+    public GameObject WinScreen;
     public static bool wavemanagement = true;
     public static int wavenumber = 0;
     public int wavenumber2 = 0;
@@ -45,6 +46,11 @@ public class WaveManager : MonoBehaviour
                 musicmanager.volume -= 0.1f;
                 timer = 0;
             }
+        }
+
+        if(wavenumber > waves.Count() - 1)
+        {
+            WinScreen.SetActive(true);
         }
     }
 
