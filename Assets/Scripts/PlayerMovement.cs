@@ -154,7 +154,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "TimeDamage")
         {
-            keepDamage = true;
+            PlayerHealth--;
+            Destroy(collision.gameObject);
 
         }
     }
@@ -176,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
             timer = -1f;
             damage.Play();
             Destroy(collision.gameObject);
+            ControllerRumble.controllerrumble.Rumble(0.5f, 1, 1);
             
         }
 

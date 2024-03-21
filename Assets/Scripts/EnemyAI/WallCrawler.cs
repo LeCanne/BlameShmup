@@ -102,7 +102,7 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
         {
             TimerSwitch += Time.deltaTime;
 
-            if (TimerSwitch > 2)
+            if (TimerSwitch > 1)
             {
                 if (ShotProcess == false)
                 {
@@ -124,7 +124,7 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
                     ShotProcess = true;
                 }
 
-                if (TimerSwitch > 3f)
+                if (TimerSwitch > 2f)
                 {
                     TimerSwitch = 0;
                     Shot2.SetActive(false);

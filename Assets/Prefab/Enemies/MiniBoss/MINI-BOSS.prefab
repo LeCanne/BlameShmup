@@ -688,6 +688,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 385333176360354311}
   - {fileID: 6145471573149515345}
   m_Father: {fileID: 6662865704703663123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
@@ -755,7 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cae23524c8485e478e4c4b567c55977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 20
+  HP: 40
 --- !u!61 &2672322094541311524
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1173,7 +1174,7 @@ MonoBehaviour:
   Shot2: {fileID: 3299994282656630936}
   TimerSwitch: 0
   head: {fileID: 3766260966626434822}
-  Health: 10
+  Health: 40
   TimerBegin: 0
   A: {fileID: 6059213645819403597}
   B: {fileID: 1536411432429838428}
@@ -1293,3 +1294,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6662865704703663123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8643549803014668360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 385333176360354311}
+  - component: {fileID: 3383401708561715323}
+  m_Layer: 0
+  m_Name: Shooter (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &385333176360354311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643549803014668360}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.9238795, w: 0.38268346}
+  m_LocalPosition: {x: -0.4, y: -0.34, z: 0}
+  m_LocalScale: {x: 1.0428573, y: 1.0347594, z: 1.0428572}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 178014968126702679}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &3383401708561715323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643549803014668360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46592afcbe9fe4348b008ab0a68bb88b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 4795972954115694498, guid: af376683e8615ac4cab3cf4e3a93d65b, type: 3}
+  bulletLife: 10
+  speed: 5
+  firingRate: 1
+  isHoming: 0
+  timer: 0
