@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6904626496840353026}
   - component: {fileID: 7056691245695211974}
   - component: {fileID: 256857773235178733}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: TimeDamage
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 4851326356802165333}
   m_Layer: 0
   m_Name: BarrierEnemy
-  m_TagString: Untagged
+  m_TagString: TimeDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

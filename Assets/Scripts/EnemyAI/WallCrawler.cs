@@ -141,6 +141,7 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
     {
         if(Health <= 0)
         {
+            ScreenShaker.screenshaker.cameraShake(0.3f, 1);
             isDead();
             gameObject.SetActive(false);    
         }

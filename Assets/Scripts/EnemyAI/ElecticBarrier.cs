@@ -85,6 +85,8 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
         if (health <= 0)
         {
             isDead();
+            ScreenShaker.screenshaker.cameraShake(0.3f, 1f);
+            ControllerRumble.controllerrumble.Rumble(0.4f, 0.7f, 0.2f);
             ScoreManager.Score += score;
             gameObject.SetActive(false);
           

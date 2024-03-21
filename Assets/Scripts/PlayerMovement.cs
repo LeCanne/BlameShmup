@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public bool keepDamage;
     public float timerdamage;
     public GameObject shooter;
+    public GameObject particle1, particle2;
+    public float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Grapple();
         CheckHealth();
+        Invincibility();
+        timer += Time.deltaTime;
     }
 
     public void Grapple()
@@ -50,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         {
             onleft = !onleft;
             cooldown = 0.5f;
+            particle1.transform.localPosition = -particle1.transform.localPosition;
+            particle2.transform.localPosition = new Vector3(-particle2.transform.localPosition.x, particle2.transform.localPosition.y);
         }
         else
         {
@@ -90,14 +96,31 @@ public class PlayerMovement : MonoBehaviour
 
         //Damage over time
 
-        timerdamage += Time.deltaTime;
-        if (timerdamage > 2 && keepDamage == true)
+        
+    }
+    public void Invincibility()
+    {
+        if(timer < 0)
         {
-            PlayerHealth--;
-            timerdamage = 0;
+            
+            Color alpha = SpriteRend.color;
+            
+            alpha.a = 0.5f;
+            SpriteRend.color = alpha;
+            Wheels.color = alpha;
+            
+            gameObject.layer = 6;
+        }
+        else
+        {
+           Color alpha =  SpriteRend.color;
+            alpha.a = 1f;
+            SpriteRend.color = alpha;
+            Wheels.color = alpha;
+            gameObject.layer = 0;
+                
         }
     }
-
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -127,15 +150,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "EnemyBullet")
         {
-            PlayerHealth--;
+             PlayerHealth--;
+            timer = -1f;
+           
             Destroy(collision.gameObject);
+            
         }
 
         if (collision.gameObject.tag == "TimeDamage")
         {
-            keepDamage = true;
+            PlayerHealth--;
+            timer = -1f;
+
 
         }
+
+
 
 
 

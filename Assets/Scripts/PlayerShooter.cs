@@ -11,6 +11,7 @@ public class PlayerShooter : MonoBehaviour
     private float timerProjectile;
     public GameObject bullet;
     private GameObject spawnedBullet;
+    public GameObject mouseCursor, Cursor3D;
 
     [Header("bulletProperties")]
     public float speed;
@@ -43,9 +44,13 @@ public class PlayerShooter : MonoBehaviour
             Vector3 dir = mousePosition - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             twistPoint.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            mouseCursor.SetActive(true);
+            Cursor3D.SetActive(false);
         }
         else
         {
+            Cursor3D.SetActive(true);
+            mouseCursor.SetActive(false);
             float HorizonAxis = Input.GetAxis("HorizontalJoystick");
             float VerticalAxis = Input.GetAxis("VerticalJoystick");
 

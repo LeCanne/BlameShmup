@@ -9,6 +9,8 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
     public Transform playerPos;
     public GameObject currentShield, Shield1, Shield2;
     private FlashEnemy flashEnemy;
+    private Animator animator;
+    private SpriteRenderer sprRend;
 
     public float timerbullet;
     public int healthPoint;
@@ -20,6 +22,8 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
     // Start is called before the first frame update
     void Start()
     {
+        sprRend = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         flashEnemy = GetComponent<FlashEnemy>();
         if(GameObject.FindWithTag("Player") != null)
         {
@@ -48,6 +52,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
         {
             if (timerbullet >= 2)
             {
+                animator.Play("Shieldbot_turn");
                 inBound = false;
                 spawner.enabled = false;
                 if(currentShield != null)
@@ -67,7 +72,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
                 if (distance < 0.5f)
 
                 {
-                   
+                    animator.Play("Shieldbot__shoot");
                     if(currentShield != null)
                     {
                         currentShield.SetActive(false);
@@ -75,12 +80,14 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
                    
                     if (playerPos.transform.position.x > transform.position.x)
                     {
+                        sprRend.flipX = false;
                         spawner = one;
                         currentShield = Shield1;
 
                     }
                     else
                     {
+                        sprRend.flipX = true;
                         currentShield = Shield2;
                         spawner = two;
                     }
@@ -110,6 +117,8 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
         {
             isDead();
             ScoreManager.Score += score;
+            ScreenShaker.screenshaker.cameraShake(0.3f, 1f);
+            ControllerRumble.controllerrumble.Rumble(0.4f, 0.7f, 0.2f);
             gameObject.SetActive(false);
         }
     }

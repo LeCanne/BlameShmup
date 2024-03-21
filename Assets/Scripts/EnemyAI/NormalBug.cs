@@ -29,7 +29,7 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
         deathTimer += Time.deltaTime;
         if(deathTimer > 10)
         {
-            healthPoints = 0;
+            Destroy(gameObject);
         }
         Shake();
         Move();
@@ -55,7 +55,7 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
     public void Shake()
     {
         var speed = 20f; //how fast it shakes
-        var amount = 0.2f; //how much it shakes
+        var amount = 0.1f; //how much it shakes
         Vector3 transformed = transform.position;
        
             transformed.x = startPos.x + Mathf.Sin(Time.time * speed) * amount;
@@ -68,6 +68,8 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
         if(healthPoints <= 0)
         {
             isDead();
+           ScreenShaker.screenshaker.cameraShake(0.3f, 0.7f);
+            ControllerRumble.controllerrumble.Rumble(0.2f, 0.4f, 0.15f);
             ScoreManager.Score += Score;
             gameObject.SetActive(false);
         }
