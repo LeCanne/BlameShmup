@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public TimeManager timeManager;
     private Rigidbody2D rb;
     private SpriteRenderer SpriteRend;
+    public AudioSource dash;
     public SpriteRenderer Wheels;
     public bool onleft = true;
     public Transform left, right;
@@ -58,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((Input.GetButtonDown("Fire2") && cooldown <= 0))
         {
+            dash.Play();
             onleft = !onleft;
             cooldown = 0.5f;
             particle1.transform.localPosition = -particle1.transform.localPosition;

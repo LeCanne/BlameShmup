@@ -14,6 +14,8 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
     public float speed;
     public int Score;
     private FlashEnemy flashenemy;
+    [SerializeField] private AudioClip DamageFX;
+    [SerializeField] private AudioClip ouchFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +73,7 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
            ScreenShaker.screenshaker.cameraShake(0.3f, 0.7f);
             ControllerRumble.controllerrumble.Rumble(0.2f, 0.4f, 0.15f);
             ScoreManager.Score += Score;
+            AudioManager.instance.PlaySoundFXClip(DamageFX, transform, 0.2f);
             gameObject.SetActive(false);
         }
     }
@@ -81,6 +84,7 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
         if(other.gameObject.tag == "PlayerBullet")
         {
             healthPoints--;
+            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.8f);
             flashenemy.CallDamageFlash();
             Destroy(other.gameObject);
         }

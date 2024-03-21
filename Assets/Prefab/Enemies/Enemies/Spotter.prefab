@@ -118,6 +118,8 @@ MonoBehaviour:
   distance: 1
   inBound: 0
   score: 245
+  damageFX: {fileID: 8300000, guid: 6e0cb653dde976946ad8af93c41b0f87, type: 3}
+  ouchFX: {fileID: 8300000, guid: 5ba809bdb08a7db42b4762402e51300f, type: 3}
 --- !u!61 &2709113986651286409
 BoxCollider2D:
   m_ObjectHideFlags: 0

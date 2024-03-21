@@ -1055,7 +1055,7 @@ MonoBehaviour:
   TimerBegin: 0
   A: {fileID: 6059213645819403597}
   B: {fileID: 1536411432429838428}
-  moveSpeed: 5
+  moveSpeed: 2
 --- !u!1 &6353773954094419256
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 2920428407066846530}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1206, y: -0.01305, z: 0}
-  m_LocalScale: {x: 0.53, y: 0, z: 0.98148143}
+  m_LocalPosition: {x: -0.002, y: -0.01305, z: 0}
+  m_LocalScale: {x: 0.26, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6005044885626991017}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 022e67e3b7d3ef643818d8a99a8e00b9, type: 3}
-  m_Color: {r: 0.28490567, g: 0.8945904, b: 1, a: 1}
+  m_Color: {r: 0.33018857, g: 0.5614813, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -118,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.001974173, y: 0.013389617}
+  m_Offset: {x: 0.004863307, y: 0.013389587}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -129,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.05746869, y: 1.7589452}
+  m_Size: {x: 0.26259217, y: 1.7589452}
   m_EdgeRadius: 0
 --- !u!95 &6647755030410762223
 Animator:
@@ -263,7 +263,9 @@ MonoBehaviour:
   vulnerable: 0
   health: 30
   score: 675
-  maxScale: 30
+  maxScale: 1.21
+  damageFX: {fileID: 8300000, guid: 6e0cb653dde976946ad8af93c41b0f87, type: 3}
+  ouchFX: {fileID: 8300000, guid: 5ba809bdb08a7db42b4762402e51300f, type: 3}
 --- !u!61 &5519740956721382188
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -296,7 +298,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.021647513, y: -0.020947583}
+  m_Offset: {x: -0.0016945191, y: -0.020947583}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -307,7 +309,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24795014, y: 0.22756295}
+  m_Size: {x: 0.14229664, y: 0.22756295}
   m_EdgeRadius: 0
 --- !u!114 &4851326356802165333
 MonoBehaviour:

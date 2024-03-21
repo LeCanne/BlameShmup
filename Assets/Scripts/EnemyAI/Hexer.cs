@@ -14,6 +14,10 @@ public class Hexer : MonoBehaviour, InterfaceEnemy
     public int Score;
 
     private FlashEnemy flashenemy;
+
+    [SerializeField] private AudioClip ouchFX;
+
+    [SerializeField] private AudioClip damageFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +68,7 @@ public class Hexer : MonoBehaviour, InterfaceEnemy
         if (health <= 0)
         {
             isDead();
+            AudioManager.instance.PlaySoundFXClip(damageFX, transform, 0.2f);
             ScreenShaker.screenshaker.cameraShake(0.3f, 1.4f);
             ControllerRumble.controllerrumble.Rumble(0.4f, 0.7f, 0.2f);
             ScoreManager.Score += Score;
@@ -86,6 +91,7 @@ public class Hexer : MonoBehaviour, InterfaceEnemy
     {
         if (collision.gameObject.tag == "PlayerBullet")
         {
+            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.8f);
             health--;
             flashenemy.CallDamageFlash();
             Destroy(collision.gameObject);

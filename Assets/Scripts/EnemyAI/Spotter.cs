@@ -19,6 +19,9 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
     public float distance = 1;
     public bool inBound;
     public int score;
+
+    [SerializeField] private AudioClip damageFX;
+    [SerializeField] private AudioClip ouchFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -116,6 +119,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
         if (healthPoint <= 0)
         {
             isDead();
+            AudioManager.instance.PlaySoundFXClip(damageFX, transform, 0.2f);
             ScoreManager.Score += score;
             ScreenShaker.screenshaker.cameraShake(0.3f, 1f);
             ControllerRumble.controllerrumble.Rumble(0.4f, 0.7f, 0.2f);
@@ -141,6 +145,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
         {
             if (other.gameObject.tag == "PlayerBullet")
             {
+                AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.8f);
                 healthPoint--;
                 flashEnemy.CallDamageFlash();
                 Destroy(other.gameObject);

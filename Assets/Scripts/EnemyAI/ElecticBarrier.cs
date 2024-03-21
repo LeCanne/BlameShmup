@@ -17,6 +17,9 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
     public int score;
     public float maxScale;
 
+    [SerializeField] private AudioClip damageFX;
+    [SerializeField] private AudioClip ouchFX;
+
     private FlashEnemy flashEnemy;
     // Start is called before the first frame update
     void Start()
@@ -88,6 +91,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
             ScreenShaker.screenshaker.cameraShake(0.3f, 1f);
             ControllerRumble.controllerrumble.Rumble(0.4f, 0.7f, 0.2f);
             ScoreManager.Score += score;
+            AudioManager.instance.PlaySoundFXClip(damageFX, transform, 0.2f);
             gameObject.SetActive(false);
           
             
@@ -102,6 +106,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
         {
             if (other.gameObject.tag == "PlayerBullet")
             {
+                AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.8f);
                 health--;
                 flashEnemy.CallDamageFlash();
                 Destroy(other.gameObject);

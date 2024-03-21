@@ -39,7 +39,7 @@ public class FlashEnemy : MonoBehaviour
     private IEnumerator DamageFlash()
     {
         SetFlashColor();
-        Debug.Log("woo");
+       
         float currentFlashAmount = 0f;
         float elapsedTime = 0f;
         while (elapsedTime < flashtime)

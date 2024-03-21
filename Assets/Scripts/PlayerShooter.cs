@@ -12,6 +12,7 @@ public class PlayerShooter : MonoBehaviour
     public GameObject bullet;
     private GameObject spawnedBullet;
     public GameObject mouseCursor, Cursor3D;
+    public AudioSource shootnoise;
 
     [Header("bulletProperties")]
     public float speed;
@@ -86,6 +87,7 @@ public class PlayerShooter : MonoBehaviour
         timerProjectile += Time.deltaTime;
         if (( Input.GetAxis("VerticalJoystick") != 0 || Input.GetAxis("HorizontalJoystick") != 0 || Input.GetButton("Fire1")) && projectileCooldown <= timerProjectile)
         {
+            shootnoise.Play();
             spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
             spawnedBullet.GetComponent<Bullet>().speed = speed;
             spawnedBullet.GetComponent<Bullet>().bulletlife = bulletLife;
