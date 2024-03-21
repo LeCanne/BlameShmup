@@ -57,8 +57,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            transform.Rotate(0, 0, 20 * Time.deltaTime);
-            transform.position = Vector3.Lerp(transform.position, new Vector3(0, -20, 0), 1 * Time.deltaTime);
+            transform.Rotate(0, 0, -50 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -20, 0), 1 * Time.deltaTime);
             collider.enabled = false;
         }
         
