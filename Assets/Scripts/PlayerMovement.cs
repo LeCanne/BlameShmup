@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer SpriteRend;
     public AudioSource dash;
+    public AudioSource damage;
     public SpriteRenderer Wheels;
     public bool onleft = true;
     public Transform left, right;
@@ -163,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         {
              PlayerHealth--;
             timer = -1f;
-           
+            damage.Play();
             Destroy(collision.gameObject);
             
         }
@@ -172,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerHealth--;
             timer = -1f;
+            damage.Play();
 
 
         }

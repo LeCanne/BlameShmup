@@ -63,7 +63,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
             {
                 if (electricBarrier.transform.localScale.y < maxScale)
                 {
-                    electricBarrier.transform.localScale += new Vector3(0, 20 * Time.deltaTime, 0);
+                   // electricBarrier.transform.localScale += new Vector3(0, 20 * Time.deltaTime, 0);
                 }
             }
            
