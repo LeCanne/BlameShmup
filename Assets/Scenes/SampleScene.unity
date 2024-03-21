@@ -2901,7 +2901,7 @@ MonoBehaviour:
   - {fileID: 1428797350}
   - {fileID: 666531697}
   WinScreen: {fileID: 1747664815}
-  wavenumber2: 1
+  wavenumber2: 3
   musicmanager: {fileID: 0}
 --- !u!4 &573535638
 Transform:
