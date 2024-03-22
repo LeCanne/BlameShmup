@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject particle1, particle2;
     public float timer;
     private Collider2D collider;
+    public TMP_Text textdone;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        textdone.text = PlayerHealth.ToString("x 00");
         if(alive == true)
         {
             Grapple();
@@ -85,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
             SpriteRend.flipX = false;
-            arm.flipY = true;
+            arm.flipY = false;
             Wheels.flipX = false;
             shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
         }
@@ -95,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, right.position, Time.deltaTime / 0.05f);
             SpriteRend.flipX = true;
             Wheels.flipX = true;
-            arm.flipY = false;
+            arm.flipY = true;
             shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
         }
     }

@@ -42,11 +42,17 @@ public class PlayerShooter : MonoBehaviour
 
         if(Gamepad.current == null)
         {
+           
             Vector3 dir = mousePosition - transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            twistPoint.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            mouseCursor.SetActive(true);
-            Cursor3D.SetActive(false);
+            if(Mathf.Abs(dir.x) > 1f || Mathf.Abs(dir.y) > 1f)
+            {
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                twistPoint.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                mouseCursor.SetActive(true);
+                Cursor3D.SetActive(false);
+            }
+            Debug.Log(dir);
+           
         }
         else
         {

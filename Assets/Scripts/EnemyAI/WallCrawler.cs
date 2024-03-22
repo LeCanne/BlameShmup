@@ -61,7 +61,7 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
             }
             else
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(beginPos.x, beginPos.y - 5, beginPos.z), Time.deltaTime / 1);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(beginPos.x, beginPos.y - 7, beginPos.z), Time.deltaTime / 1);
             }
 
             Attack();
