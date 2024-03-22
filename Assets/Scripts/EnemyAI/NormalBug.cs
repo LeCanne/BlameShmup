@@ -16,9 +16,12 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
     private FlashEnemy flashenemy;
     [SerializeField] private AudioClip DamageFX;
     [SerializeField] private AudioClip ouchFX;
+    public GameObject Explosion;
+    
     // Start is called before the first frame update
     void Start()
     {
+        
         bulletSpawner.enabled = false;
         startPos.x = transform.position.x;
         bulletSpawner.timer = 0;
@@ -70,6 +73,9 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
         if(healthPoints <= 0)
         {
             isDead();
+
+            
+            ParticleManager.m_Instance.ParticleSpawner(Explosion, GetComponent<Collider2D>(), 1);
            ScreenShaker.screenshaker.cameraShake(0.3f, 0.7f);
             ControllerRumble.controllerrumble.Rumble(0.2f, 0.4f, 0.15f);
             ScoreManager.Score += Score;

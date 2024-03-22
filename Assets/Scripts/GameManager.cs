@@ -13,9 +13,11 @@ public class GameManager : MonoBehaviour
 
     public void NextScene(int sceneChosen)
     {
+        WaveManager.wavenumber = 0;
         WaveManager.wavemanagement = true;
         Time.timeScale = 1;
-        SceneManager.LoadScene(sceneChosen);
         ScoreManager.Score = 0;
+        SceneManager.LoadScene(sceneChosen);
+        
     }
 }

@@ -19,6 +19,7 @@ public class WaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        wavemanagement = true;
         StartCoroutine(Loading());
         wavenumber = wavenumber2 - 1;
     }
@@ -27,8 +28,12 @@ public class WaveManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        Debug.Log(wavenumber);
+        Debug.Log(wavemanagement);
+        Debug.Log(loader);
         if(wavemanagement == true && loader == true)
         {
+            
             if(wavenumber < waves.Length)
             {
                 waves[wavenumber].SetActive(true);

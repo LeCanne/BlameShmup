@@ -30,7 +30,7 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
     private Vector3 beginPos;
 
     private float sinTime;
-    private FlashEnemy flashEnemy;
+   
 
 
     // Start is called before the first frame update
@@ -142,7 +142,9 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
     {
         if(Health <= 0)
         {
-            ScreenShaker.screenshaker.cameraShake(0.3f, 1);
+            ScreenShaker.screenshaker.cameraShake(2f, 1);
+            ControllerRumble.controllerrumble.Rumble(1, 2, 2f);
+            ScoreManager.Score += 30000;
             isDead();
             gameObject.SetActive(false);    
         }

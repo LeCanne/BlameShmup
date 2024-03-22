@@ -10,16 +10,7 @@ public class ControllerRumble : MonoBehaviour
     public static ControllerRumble controllerrumble;
     private void Awake() => controllerrumble = this;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 
 
     public void Rumble(float minrumble, float maxrumble, float rumbletime)
