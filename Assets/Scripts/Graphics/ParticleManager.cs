@@ -26,6 +26,13 @@ public class ParticleManager : MonoBehaviour
         StartCoroutine(particleSpawn(SpawnedObject, position, HowMuch));
     }
 
+    IEnumerator Discard(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
+        yield return null;  
+    }
+
     IEnumerator particleSpawn(GameObject spawnedObject, Collider2D collider, int HowMuch)
     {
         float posY = 0;
@@ -35,13 +42,16 @@ public class ParticleManager : MonoBehaviour
         for (int i = 0; i < HowMuch; i++)
         {
            
-            posX = Random.Range(collider.bounds.min.x, collider.bounds.max.x);
-            posY = Random.Range(collider.bounds.min.y, collider.bounds.max.y);
+            posX = Random.Range(collider.bounds.min.x - 0.5f, collider.bounds.max.x + 0.5f);
+            posY = Random.Range(collider.bounds.min.y - 0.5f, collider.bounds.max.y + 0.5f);
 
             Vector3 pos = new Vector3(posX, posY);
 
-            Instantiate(spawnedObject, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
+            GameObject spawned = Instantiate(spawnedObject, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
+            StartCoroutine(Discard(spawned));
+            yield return new WaitForSeconds(0.1f);
         }
+        
             yield return null;
     }
 }

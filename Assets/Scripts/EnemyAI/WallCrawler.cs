@@ -18,6 +18,7 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
     public BossBodyPart head;
     public int Health;
     public float TimerBegin;
+    
 
     [Header("HeadMovement")]
     public Transform A;
@@ -28,8 +29,10 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
     private Transform current;
     private Transform target;
     private Vector3 beginPos;
-
+    [SerializeField] private GameObject explosionFx;
+    [SerializeField] private GameObject damage;
     private float sinTime;
+    public bool dead;
    
 
 
@@ -44,22 +47,41 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
     // Update is called once per frame
     void Update()
     {
-        //Begins
-        TimerBegin += Time.deltaTime;
-        if(TimerBegin >= 2)
+      
+        if (dead == false)
         {
-            Positioned = true;
-            head.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+
+
+            //Begins
+            TimerBegin += Time.deltaTime;
+            if (TimerBegin >= 2)
+            {
+                Positioned = true;
+                head.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(beginPos.x, beginPos.y - 5, beginPos.z), Time.deltaTime / 1);
+            }
+
+            Attack();
+          
+            HeadMovement();
+            Health = head.HP;
+            CheckHP();
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(beginPos.x, beginPos.y - 5, beginPos.z), Time.deltaTime/1);
+            Shot1.SetActive(false);
+            Shot2.SetActive(false);
+            Debug.Log("ded");
+            TimerBegin += Time.deltaTime;
+            if(TimerBegin > 3)
+            {
+               
+                Destroy(gameObject);
+            }
         }
-
-        Attack();
-        CheckHP();
-        HeadMovement();
-        Health = head.HP;
     }
 
     public void HeadMovement()
@@ -142,11 +164,16 @@ public class WallCrawler : MonoBehaviour, InterfaceEnemy
     {
         if(Health <= 0)
         {
-            ScreenShaker.screenshaker.cameraShake(2f, 1);
-            ControllerRumble.controllerrumble.Rumble(1, 2, 2f);
+            TimerBegin = 0;
+            ParticleManager.m_Instance.ParticleSpawner(explosionFx, damage.GetComponent<Collider2D>(), 30);
+            ScreenShaker.screenshaker.cameraShake(3f, 0.5f);
+            ControllerRumble.controllerrumble.Rumble(1, 2, 3f);
             ScoreManager.Score += 30000;
-            isDead();
-            gameObject.SetActive(false);    
+
+            dead = true;
+
+
+
         }
     }
 

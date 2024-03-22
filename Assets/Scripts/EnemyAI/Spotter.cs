@@ -22,6 +22,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
 
     [SerializeField] private AudioClip damageFX;
     [SerializeField] private AudioClip ouchFX;
+    [SerializeField] private GameObject ExplosionFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -119,6 +120,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
         if (healthPoint <= 0)
         {
             isDead();
+            ParticleManager.m_Instance.ParticleSpawner(ExplosionFX, GetComponent<Collider2D>(), 1);
             AudioManager.instance.PlaySoundFXClip(damageFX, transform, 0.2f);
             ScoreManager.Score += score;
             ScreenShaker.screenshaker.cameraShake(0.3f, 1f);

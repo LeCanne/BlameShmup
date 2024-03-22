@@ -115,6 +115,7 @@ MonoBehaviour:
   Score: 520
   ouchFX: {fileID: 8300000, guid: 5ba809bdb08a7db42b4762402e51300f, type: 3}
   damageFX: {fileID: 8300000, guid: 6e0cb653dde976946ad8af93c41b0f87, type: 3}
+  ExplosionFX: {fileID: 7584566809437654504, guid: 4b622103a18df3741a3640c8f970924f, type: 3}
 --- !u!61 &4787805839340319216
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1179,6 +1179,9 @@ MonoBehaviour:
   A: {fileID: 6059213645819403597}
   B: {fileID: 1536411432429838428}
   moveSpeed: 2
+  explosionFx: {fileID: 7584566809437654504, guid: 4b622103a18df3741a3640c8f970924f, type: 3}
+  damage: {fileID: 2458058219265973884}
+  dead: 0
 --- !u!1 &6353773954094419256
 GameObject:
   m_ObjectHideFlags: 0

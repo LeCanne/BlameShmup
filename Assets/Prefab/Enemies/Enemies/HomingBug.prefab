@@ -215,7 +215,7 @@ MonoBehaviour:
   Score: 150
   DamageFX: {fileID: 8300000, guid: 6e0cb653dde976946ad8af93c41b0f87, type: 3}
   ouchFX: {fileID: 8300000, guid: 5ba809bdb08a7db42b4762402e51300f, type: 3}
-  Explosion: {fileID: 4207512630087315448, guid: 39fcc9261df19a043bc461acf465954f, type: 3}
+  Explosion: {fileID: 7584566809437654504, guid: 4b622103a18df3741a3640c8f970924f, type: 3}
 --- !u!212 &3240033655597184568
 SpriteRenderer:
   m_ObjectHideFlags: 0

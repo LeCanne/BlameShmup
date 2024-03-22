@@ -18,6 +18,8 @@ public class Hexer : MonoBehaviour, InterfaceEnemy
     [SerializeField] private AudioClip ouchFX;
 
     [SerializeField] private AudioClip damageFX;
+
+    [SerializeField] private GameObject ExplosionFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +70,7 @@ public class Hexer : MonoBehaviour, InterfaceEnemy
         if (health <= 0)
         {
             isDead();
+            ParticleManager.m_Instance.ParticleSpawner(ExplosionFX, GetComponent<Collider2D>(), 1);
             AudioManager.instance.PlaySoundFXClip(damageFX, transform, 0.2f);
             ScreenShaker.screenshaker.cameraShake(0.3f, 1.4f);
             ControllerRumble.controllerrumble.Rumble(0.4f, 0.7f, 0.2f);

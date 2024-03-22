@@ -19,6 +19,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
 
     [SerializeField] private AudioClip damageFX;
     [SerializeField] private AudioClip ouchFX;
+    [SerializeField] private GameObject ExplodeFX;
 
     private FlashEnemy flashEnemy;
     // Start is called before the first frame update
@@ -88,6 +89,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
         if (health <= 0)
         {
             isDead();
+            ParticleManager.m_Instance.ParticleSpawner(ExplodeFX, GetComponent<Collider2D>(), 2);
             ScreenShaker.screenshaker.cameraShake(0.3f, 1f);
             ControllerRumble.controllerrumble.Rumble(0.4f, 0.7f, 0.2f);
             ScoreManager.Score += score;
