@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public float timer;
     private Collider2D collider;
     public TMP_Text textdone;
+    public Animator animIcon;
     // Start is called before the first frame update
     void Start()
     {
@@ -129,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         {
             
             Color alpha = SpriteRend.color;
-            
+            animIcon.Play("Life_hurt");
             alpha.a = 0.5f;
             SpriteRend.color = alpha;
             Wheels.color = alpha;
@@ -138,7 +139,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-           Color alpha =  SpriteRend.color;
+            animIcon.Play("Life_idle");
+            Color alpha =  SpriteRend.color;
             alpha.a = 1f;
             SpriteRend.color = alpha;
             Wheels.color = alpha;
