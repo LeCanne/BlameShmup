@@ -44,6 +44,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 4047140069
+    locked: 0
+  - name: BackDecoration
+    uniqueID: 3389849257
+    locked: 0
+  - name: SecondWall
+    uniqueID: 2924415135
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

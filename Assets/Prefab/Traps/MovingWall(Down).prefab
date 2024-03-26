@@ -635,4 +635,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8c65895da0b894894d7ec3304b3413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyBreaker: 1
+  EnemyBreaker: 0

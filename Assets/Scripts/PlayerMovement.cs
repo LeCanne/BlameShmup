@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -34,12 +37,15 @@ public class PlayerMovement : MonoBehaviour
     float distanceRight;
     private RaycastHit2D hit1, hit2;
     private bool gothit, changeBlink;
+        
+    
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         SpriteRend = GetComponent<SpriteRenderer>();
         collisiontoget = GetComponent<CircleCollider2D>();
+       
     }
 
     // Update is called once per frame
@@ -227,6 +233,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if(changeBlink == true)
                 {
+                   
                     Color alpha = SpriteRend.color;
                     animIcon.Play("Life_hurt");
                     alpha.a = 0.1f;

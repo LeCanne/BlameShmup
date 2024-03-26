@@ -22,7 +22,7 @@ public class WaveKiller : MonoBehaviour
         sprRend = GetComponent<SpriteRenderer>();
         sprRend.enabled = false;
         
-        Invoke("SpawnEnemy", 1);
+        Invoke("SpawnEnemy", startWave);
     }
 
     private void Update()
