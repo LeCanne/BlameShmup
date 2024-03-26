@@ -26,13 +26,16 @@ public class BulletBreaker : MonoBehaviour
             }
         
         
-        
+        if(EnemyBreaker == false)
+        {
+
             if (collision.gameObject.tag == "EnemyBullet")
             {
                 Destroy(collision.gameObject);
             }
-        
-        
+
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

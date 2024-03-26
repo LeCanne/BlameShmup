@@ -41,14 +41,17 @@ public class ParticleManager : MonoBehaviour
 
         for (int i = 0; i < HowMuch; i++)
         {
+           if(collider != null)
+            {
+                posX = Random.Range(collider.bounds.min.x - 0.5f, collider.bounds.max.x + 0.5f);
+                posY = Random.Range(collider.bounds.min.y - 0.5f, collider.bounds.max.y + 0.5f);
+
+                Vector3 pos = new Vector3(posX, posY);
+
+                GameObject spawned = Instantiate(spawnedObject, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
+                StartCoroutine(Discard(spawned));
+            }
            
-            posX = Random.Range(collider.bounds.min.x - 0.5f, collider.bounds.max.x + 0.5f);
-            posY = Random.Range(collider.bounds.min.y - 0.5f, collider.bounds.max.y + 0.5f);
-
-            Vector3 pos = new Vector3(posX, posY);
-
-            GameObject spawned = Instantiate(spawnedObject, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
-            StartCoroutine(Discard(spawned));
             yield return new WaitForSeconds(0.1f);
         }
         

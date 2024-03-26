@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public bool onleft = true;
     public Transform left, right;
     public int PlayerHealth;
-    public float cooldown;
+    public float cooldown, timerBlink;
     public bool keepDamage;
     public float timerdamage;
     public GameObject shooter;
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     float distanceLeft;
     float distanceRight;
     private RaycastHit2D hit1, hit2;
-    private bool gothit;
+    private bool gothit, changeBlink;
     // Start is called before the first frame update
     void Start()
     {
@@ -119,8 +119,8 @@ public class PlayerMovement : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, 20, layerMask);
             distanceLeft = Vector3.Distance(new Vector2(transform.position.x, 0), new Vector2(hit.point.x, 0));
-            Debug.Log(distanceLeft);
-            if (hit.collider.gameObject.tag == "Wall")
+           
+            if (hit.collider.gameObject?.tag == "Wall")
             {
                 Debug.Log("no");
 
@@ -139,8 +139,8 @@ public class PlayerMovement : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 20, layerMask);
             distanceRight = Vector3.Distance(new Vector2(transform.position.x, 0), new Vector2(hit.point.x, 0));
-            Debug.Log(distanceRight);
-            if (hit.collider.gameObject.tag == "Wall")
+            
+            if (hit.collider.gameObject?.tag == "Wall")
             {
                 Debug.Log("yes");
 
@@ -194,8 +194,15 @@ public class PlayerMovement : MonoBehaviour
             gameObject.transform.parent = null;
             alive = false;
             timeManager.lost = true;
+
+            Color alpha = SpriteRend.color;
+            PlayerHealth = 0;
+            alpha.a = 1f;
+            SpriteRend.color = alpha;
+            Wheels.color = alpha;
+            arm.color = alpha;
             //gameObject.SetActive(false);
-            
+
         }
 
         //Damage over time
@@ -204,21 +211,47 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Invincibility()
     {
-        if(timer < 0)
+        if(timer < 0 )
         {
-            if(gothit == false)
+            if(gothit == false && PlayerHealth > 0)
             {
                 PlayerHealth--;
                 gothit = true;
             }
-            
-            Color alpha = SpriteRend.color;
-            animIcon.Play("Life_hurt");
-            alpha.a = 0.5f;
-            SpriteRend.color = alpha;
-            Wheels.color = alpha;
-            
-            gameObject.layer = 6;
+
+            timerBlink += Time.deltaTime;
+
+            if(timerBlink > 0.05f)
+            {
+                changeBlink = !changeBlink;
+
+                if(changeBlink == true)
+                {
+                    Color alpha = SpriteRend.color;
+                    animIcon.Play("Life_hurt");
+                    alpha.a = 0.1f;
+                    SpriteRend.color = alpha;
+                    Wheels.color = alpha;
+                    arm.color = alpha;
+                }
+                
+                if(changeBlink == false)
+                {
+                    Color alpha = SpriteRend.color;
+                    animIcon.Play("Life_hurt");
+                    alpha.a = 1f;
+                    SpriteRend.color = alpha;
+                    Wheels.color = alpha;
+                    arm.color = alpha;
+                }
+               
+              
+
+                gameObject.layer = 6;
+
+                timerBlink = 0;
+            }
+           
         }
         else
         {

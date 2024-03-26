@@ -17,7 +17,11 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        music.pitch = Time.timeScale;
+        if(music.pitch > 0.7f)
+        {
+            music.pitch = Time.timeScale;
+        }
+       
         if (lost == true)
         {
             timestop += Time.unscaledDeltaTime;
