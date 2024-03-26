@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,23 +24,48 @@ public class PlayerMovement : MonoBehaviour
     public GameObject shooter;
     public GameObject particle1, particle2;
     public float timer;
-    private Collider2D collider;
+    private float inputY;
+    private Collider2D collisiontoget;
+    public LayerMask layerMask;
+    public LayerMask collidWalls;
     public TMP_Text textdone;
     public Animator animIcon;
+    float distanceLeft;
+    float distanceRight;
+    private RaycastHit2D hit1, hit2;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         SpriteRend = GetComponent<SpriteRenderer>();
-        collider = GetComponent<CircleCollider2D>();
+        collisiontoget = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
-        float inputY = Input.GetAxisRaw("Vertical");
-        rb.MovePosition(rb.position + new Vector2(0, inputY) * speed * Time.fixedDeltaTime);
+        
+         
+
+        
+
+        if ((inputY > 0 && hit1.collider == null) || (inputY < 0 && hit2.collider == null))
+        {
+               rb.MovePosition(rb.position + new Vector2(0, inputY) * speed * Time.fixedDeltaTime);
+            
+        }
+         
+        
+          
+
+        
+       
+       
+       
+           
+        
+        
 
 
 
@@ -51,6 +76,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        hit1 = Physics2D.Raycast(transform.position, transform.up, 0.2f, collidWalls);
+        hit2 = Physics2D.Raycast(transform.position, -transform.up, 0.2f, collidWalls);
+        inputY = Input.GetAxisRaw("Vertical");
         textdone.text = PlayerHealth.ToString("x 00");
         if(alive == true)
         {
@@ -63,45 +91,93 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Rotate(0, 0, -50 * Time.deltaTime);
             transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -20, 0), 1 * Time.deltaTime);
-            collider.enabled = false;
+            collisiontoget.enabled = false;
         }
         
     }
 
     public void Grapple()
     {
+
+       
+       
         if ((Input.GetButtonDown("Fire2") && cooldown <= 0))
         {
             dash.Play();
+            distanceRight = 1;
+            distanceLeft = 1;
             onleft = !onleft;
             cooldown = 0.5f;
             particle1.transform.localPosition = -particle1.transform.localPosition;
             particle2.transform.localPosition = new Vector3(-particle2.transform.localPosition.x, particle2.transform.localPosition.y);
+           
+           
+
         }
+        if (onleft == true && distanceLeft > 0.5f)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, 20, layerMask);
+            distanceLeft = Vector3.Distance(new Vector2(transform.position.x, 0), new Vector2(hit.point.x, 0));
+            Debug.Log(distanceLeft);
+            if (hit.collider.gameObject.tag == "Wall")
+            {
+                Debug.Log("no");
+
+                
+                SpriteRend.flipX = false;
+                arm.flipY = false;
+                Wheels.flipX = false;
+                shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
+                transform.position = Vector3.Lerp(transform.position, hit.point, Time.deltaTime / 0.05f);
+                gameObject.transform.parent = hit.collider.gameObject.transform;
+            }
+           
+        }
+
+        if (onleft == false && distanceRight > 0.5f)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 20, layerMask);
+            distanceRight = Vector3.Distance(new Vector2(transform.position.x, 0), new Vector2(hit.point.x, 0));
+            Debug.Log(distanceRight);
+            if (hit.collider.gameObject.tag == "Wall")
+            {
+                Debug.Log("yes");
+
+                SpriteRend.flipX = true;
+                arm.flipY = true;
+                Wheels.flipX = true;
+                shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
+                transform.position = Vector3.Lerp(transform.position, hit.point, Time.deltaTime / 0.05f);
+                gameObject.transform.parent = hit.collider.gameObject.transform;
+            }
+           
+        }
+
         else
         {
             cooldown -= Time.deltaTime;
         }
 
-        float wow = Vector3.Distance(new Vector2(transform.position.x,0), new Vector2(left.position.x,0));
-        float waw = Vector3.Distance(new Vector2(transform.position.x, 0), new Vector2(right.position.x, 0));
-        if (onleft == true && wow > 0.1f)
-        {
-            transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
-            SpriteRend.flipX = false;
-            arm.flipY = false;
-            Wheels.flipX = false;
-            shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
-        }
-        if (onleft == false & waw > 0.1f)
-        {
+       
+        //if (onleft == true && wow > 0.1f)
+        //{
+        //    transform.position = Vector3.Lerp(transform.position, left.position, Time.deltaTime / 0.05f);
+        //    SpriteRend.flipX = false;
+        //    arm.flipY = false;
+        //    Wheels.flipX = false;
+        //    shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
+        //}
+        //if (onleft == false & waw > 0.1f)
+        //{
 
-            transform.position = Vector3.Lerp(transform.position, right.position, Time.deltaTime / 0.05f);
-            SpriteRend.flipX = true;
-            Wheels.flipX = true;
-            arm.flipY = true;
-            shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
-        }
+        //    transform.position = Vector3.Lerp(transform.position, right.position, Time.deltaTime / 0.05f);
+        //    SpriteRend.flipX = true;
+        //    Wheels.flipX = true;
+        //    arm.flipY = true;
+        //    shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
+        //}
+
+        
     }
             
         
@@ -114,6 +190,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (PlayerHealth <= 0)
         {
+            gameObject.transform.parent = null;
             alive = false;
             timeManager.lost = true;
             //gameObject.SetActive(false);
@@ -144,7 +221,7 @@ public class PlayerMovement : MonoBehaviour
             alpha.a = 1f;
             SpriteRend.color = alpha;
             Wheels.color = alpha;
-            gameObject.layer = 0;
+            gameObject.layer = 2;
                 
         }
     }
@@ -182,13 +259,27 @@ public class PlayerMovement : MonoBehaviour
             timer = -1f;
             damage.Play();
             Destroy(collision.gameObject);
-            ControllerRumble.controllerrumble.Rumble(0.5f, 1, 1);
+            if(Gamepad.current != null)
+            {
+                ControllerRumble.controllerrumble.Rumble(0.5f, 1, 1);
+            }
+         
             
         }
 
         if (collision.gameObject.tag == "TimeDamage")
         {
             PlayerHealth--;
+            timer = -1f;
+            damage.Play();
+
+
+        }
+
+        if (collision.gameObject.tag == "DEATH")
+        {
+           
+            PlayerHealth = 0;
             timer = -1f;
             damage.Play();
 

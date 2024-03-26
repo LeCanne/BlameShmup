@@ -28,9 +28,7 @@ public class WaveManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        Debug.Log(wavenumber);
-        Debug.Log(wavemanagement);
-        Debug.Log(loader);
+      
         if(wavemanagement == true && loader == true)
         {
             

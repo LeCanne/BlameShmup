@@ -51,7 +51,7 @@ public class PlayerShooter : MonoBehaviour
                 mouseCursor.SetActive(true);
                 Cursor3D.SetActive(false);
             }
-            Debug.Log(dir);
+            
            
         }
         else

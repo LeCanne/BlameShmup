@@ -19,20 +19,19 @@ public class BulletBreaker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(EnemyBreaker == false)
-        {
+        
             if (collision.gameObject.tag == "PlayerBullet")
             {
                 Destroy(collision.gameObject);
             }
-        }
-        else
-        {
+        
+        
+        
             if (collision.gameObject.tag == "EnemyBullet")
             {
                 Destroy(collision.gameObject);
             }
-        }
+        
         
     }
 
