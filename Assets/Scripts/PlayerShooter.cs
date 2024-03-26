@@ -13,6 +13,7 @@ public class PlayerShooter : MonoBehaviour
     private GameObject spawnedBullet;
     public GameObject mouseCursor, Cursor3D;
     public AudioSource shootnoise;
+    public PlayerMovement player;
 
     [Header("bulletProperties")]
     public float speed;
@@ -30,8 +31,12 @@ public class PlayerShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Aiming();
-        Shooting();
+        if (player.alive == true)
+        {
+            Aiming();
+            Shooting();
+        }
+       
     }
 
 

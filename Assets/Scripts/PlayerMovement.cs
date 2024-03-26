@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
-    private bool alive = true;
+    public bool alive = true;
     public TimeManager timeManager;
     private Rigidbody2D rb;
     private SpriteRenderer SpriteRend;
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     float distanceLeft;
     float distanceRight;
     private RaycastHit2D hit1, hit2;
+    private bool gothit;
     // Start is called before the first frame update
     void Start()
     {
@@ -205,6 +206,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(timer < 0)
         {
+            if(gothit == false)
+            {
+                PlayerHealth--;
+                gothit = true;
+            }
             
             Color alpha = SpriteRend.color;
             animIcon.Play("Life_hurt");
@@ -216,6 +222,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            gothit = false;
             animIcon.Play("Life_idle");
             Color alpha =  SpriteRend.color;
             alpha.a = 1f;
@@ -255,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "EnemyBullet")
         {
-             PlayerHealth--;
+            
             timer = -1f;
             damage.Play();
             Destroy(collision.gameObject);
@@ -269,7 +276,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "TimeDamage")
         {
-            PlayerHealth--;
+           
             timer = -1f;
             damage.Play();
 

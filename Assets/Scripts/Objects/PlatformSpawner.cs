@@ -18,7 +18,9 @@ public class PlatformSpawner : MonoBehaviour
     {
         sprRend = GetComponent<SpriteRenderer>();
         sprRend.enabled = false;
+        
         descent = Platform.GetComponent<Descent>();
+        descent.speed = speed;
         StartCoroutine(Enemytimer());
         InvokeRepeating("SpawnEnemy", 0, rate);
     }
@@ -26,7 +28,7 @@ public class PlatformSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         descent.speed = speed;
+        descent.speed = speed;
     }
 
     void SpawnEnemy()
