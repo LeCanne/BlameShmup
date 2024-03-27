@@ -14,7 +14,9 @@ public class WaveManager : MonoBehaviour
     public int wavenumber2 = 0;
 
     private bool loader = false;
-    public AudioSource musicmanager;
+    public bool hasplayed = false;
+    public AudioSource musicLevel;
+    public AudioSource BossMusic;
     private float timer;
     // Start is called before the first frame update
     void Start()
@@ -40,20 +42,45 @@ public class WaveManager : MonoBehaviour
            
         }
 
-        if (wavenumber >= 28)
+        if(wavenumber == waves.Count() - 1)
+            
+               
+            
         {
+            
             if (timer >= 0.8)
             {
 
 
-                musicmanager.volume -= 0.1f;
+                musicLevel.volume -= 0.1f;
+                if(hasplayed == false && musicLevel.volume < 0.1f)
+                {
+                    BossMusic.Play();
+                    hasplayed = true;
+                }
+                if(BossMusic.volume < 0.5f)
+                {
+                    BossMusic.volume += 0.1f;
+                }
+               
+
                 timer = 0;
             }
         }
 
-        if(wavenumber > waves.Count() - 1)
+        
+
+        if (wavenumber == waves.Count())
         {
             WinScreen.SetActive(true);
+            if (timer >= 0.8)
+            {
+
+
+                BossMusic.volume -= 0.1f;
+
+                timer = 0;
+            }
         }
     }
 

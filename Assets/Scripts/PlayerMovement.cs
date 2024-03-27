@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        Debug.Log(inputY);
+     
         if ((inputY >= 0 && hit1.collider == null) || (inputY <= 0 && hit2.collider == null))
         {
                rb.MovePosition(rb.position + new Vector2(0, inputY) * speed * Time.fixedDeltaTime);
@@ -271,6 +271,7 @@ public class PlayerMovement : MonoBehaviour
             alpha.a = 1f;
             SpriteRend.color = alpha;
             Wheels.color = alpha;
+            arm.color = alpha;
             gameObject.layer = 2;
                 
         }
