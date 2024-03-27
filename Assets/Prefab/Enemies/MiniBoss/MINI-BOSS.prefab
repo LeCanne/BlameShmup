@@ -757,6 +757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 40
+  ouchFX: {fileID: 8300000, guid: 5ba809bdb08a7db42b4762402e51300f, type: 3}
 --- !u!61 &2672322094541311524
 BoxCollider2D:
   m_ObjectHideFlags: 0

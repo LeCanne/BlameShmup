@@ -18,6 +18,7 @@ public class ScoreManager : MonoBehaviour
     {
         originalScale = Vector3.zero;
         originalScale += scoreTxt.transform.localScale;
+        timer = 2;
        
     }
 
