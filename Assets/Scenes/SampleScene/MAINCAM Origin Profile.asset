@@ -32,16 +32,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e1dc532bcb41949b58bc4f2abfbb7e, type: 3}
   m_Name: LensDistortion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.3
   xMultiplier:
     m_OverrideState: 1
     m_Value: 1
   yMultiplier:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   center:
     m_OverrideState: 0
     m_Value: {x: 0.5, y: 0.5}
@@ -63,7 +63,7 @@ MonoBehaviour:
   active: 0
   distance:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.09
   cropToFit:
     m_OverrideState: 1
     m_Value: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.245
 --- !u!114 &-6555929692017347991
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -101,13 +101,13 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 24.37
+    m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.02
+    m_Value: 12.7
   scatter:
     m_OverrideState: 1
-    m_Value: 0.209
+    m_Value: 0.798
   clamp:
     m_OverrideState: 0
     m_Value: 65466.38
@@ -269,19 +269,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29fa0085f50d5e54f8144f766051a691, type: 3}
   m_Name: FilmGrain
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   type:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 10
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.08
   response:
-    m_OverrideState: 0
-    m_Value: 0.8
+    m_OverrideState: 1
+    m_Value: 1
   texture:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: 9388e9921ece945489b626e1d9c2362f, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

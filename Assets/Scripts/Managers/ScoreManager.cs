@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour
     public float maxScore;
     public float timer;
     public bool done = true;
-    
+
     public GameObject scoreTxt;
     private Vector3 originalScale;
     private Vector3 newScale;
@@ -35,6 +35,7 @@ public class ScoreManager : MonoBehaviour
                 newScale = scoreTxt.transform.localScale;
                
                 scoreTxt.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
+                
 
                 done = false;
             }

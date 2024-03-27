@@ -6,6 +6,7 @@ public class BossBodyPart : MonoBehaviour
 {
     public int HP;
     private FlashEnemy flashEnemy;
+    public AudioClip ouchFX;
     void Start()
     {
         flashEnemy = GetComponent<FlashEnemy>();
@@ -24,6 +25,7 @@ public class BossBodyPart : MonoBehaviour
             Destroy(other.gameObject);
             HP--;
             flashEnemy.CallDamageFlash();
+            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.8f);
         }
     }
 }

@@ -143,14 +143,15 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if(inBound == true)
+        
+        if (inBound == true)
         {
             if (other.gameObject.tag == "PlayerBullet")
             {
                 AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.8f);
-                
-                healthPoint--;
                 flashEnemy.CallDamageFlash();
+                healthPoint--;
+                
                 Destroy(other.gameObject);
             }
         }

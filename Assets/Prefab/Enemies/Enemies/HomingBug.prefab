@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 4795972954115694498, guid: af376683e8615ac4cab3cf4e3a93d65b, type: 3}
   bulletLife: 2
-  speed: 10
+  speed: 7
   firingRate: 1
   isHoming: 1
   timer: 0

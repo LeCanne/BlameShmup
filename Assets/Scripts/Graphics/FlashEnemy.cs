@@ -46,7 +46,7 @@ public class FlashEnemy : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
 
-            currentFlashAmount = Mathf.Lerp(1, 0, (elapsedTime / flashtime));
+            currentFlashAmount = Mathf.Lerp(0.001f, 0, (elapsedTime / flashtime));
             SetFlashAmount(currentFlashAmount);
             yield return null;
         }
