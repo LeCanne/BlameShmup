@@ -33,10 +33,7 @@ public class WaveSpawner : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > 0.2f)
             {
-                Color alpha = otherRender.color;
-
-                alpha.a = 0f;
-                otherRender.color = alpha;
+               otherRender.gameObject.SetActive(false);
                 if(timer > 0.4f)
                 {
                     timer = 0;
@@ -46,10 +43,7 @@ public class WaveSpawner : MonoBehaviour
             }
             else
             {
-                Color alpha = otherRender.color;
-
-                alpha.a = 1f;
-                otherRender.color = alpha;
+                otherRender.gameObject.SetActive(true);
 
             }
         }

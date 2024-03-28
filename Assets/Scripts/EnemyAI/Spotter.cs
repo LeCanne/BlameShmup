@@ -148,7 +148,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
         {
             if (other.gameObject.tag == "PlayerBullet")
             {
-                AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.8f);
+                AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.3f);
                 flashEnemy.CallDamageFlash();
                 healthPoint--;
                 

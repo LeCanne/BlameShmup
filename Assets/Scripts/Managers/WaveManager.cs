@@ -42,32 +42,36 @@ public class WaveManager : MonoBehaviour
            
         }
 
-        if(wavenumber == waves.Count() - 1)
+        if(wavenumber == waves.Count() - 2)
             
                
             
         {
             
-            if (timer >= 0.8)
+            if (timer >= 0.4)
             {
 
 
-                musicLevel.volume -= 0.1f;
-                if(hasplayed == false && musicLevel.volume < 0.1f)
-                {
-                    BossMusic.Play();
-                    hasplayed = true;
-                }
-                if(BossMusic.volume < 0.5f)
-                {
-                    BossMusic.volume += 0.1f;
-                }
+                musicLevel.volume -= 0.02f;
+                
                
 
                 timer = 0;
             }
         }
 
+        if(wavenumber == waves.Count() - 1)
+        {
+            if (hasplayed == false && musicLevel.volume < 0.1f)
+            {
+                BossMusic.Play();
+                hasplayed = true;
+            }
+            if (BossMusic.volume < 0.5f)
+            {
+                BossMusic.volume += 0.1f;
+            }
+        }
         
 
         if (wavenumber == waves.Count())

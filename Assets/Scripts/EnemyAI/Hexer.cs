@@ -94,7 +94,7 @@ public class Hexer : MonoBehaviour, InterfaceEnemy
     {
         if (collision.gameObject.tag == "PlayerBullet")
         {
-            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.8f);
+            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.3f);
             health--;
             flashenemy.CallDamageFlash();
             Destroy(collision.gameObject);
