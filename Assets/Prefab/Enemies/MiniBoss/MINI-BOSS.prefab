@@ -759,7 +759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 80
   MaxHP: 0
-  ouchFX: {fileID: 8300000, guid: 5ba809bdb08a7db42b4762402e51300f, type: 3}
+  ouchFX: {fileID: 8300000, guid: 80dc1bee48c77ab4695aea22561d628b, type: 3}
   timerdamage: 0
   lite: {fileID: 3980784383318576654}
 --- !u!61 &2672322094541311524
