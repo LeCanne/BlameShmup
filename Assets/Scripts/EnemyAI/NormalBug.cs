@@ -78,7 +78,7 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
             ParticleManager.m_Instance.ParticleSpawner(Explosion, GetComponent<Collider2D>(), 1);
            ScreenShaker.screenshaker.cameraShake(0.3f, 0.7f);
             ControllerRumble.controllerrumble.Rumble(0.2f, 0.4f, 0.15f);
-            ScoreManager.Score += Score;
+            ScoreManager.Score += Score * ScoreManager.Multiplier;
             AudioManager.instance.PlaySoundFXClip(DamageFX, transform, 0.2f);
             gameObject.SetActive(false);
         }

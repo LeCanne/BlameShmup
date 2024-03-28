@@ -122,7 +122,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
             isDead();
             ParticleManager.m_Instance.ParticleSpawner(ExplosionFX, GetComponent<Collider2D>(), 1);
             AudioManager.instance.PlaySoundFXClip(damageFX, transform, 0.2f);
-            ScoreManager.Score += score;
+            ScoreManager.Score += score * ScoreManager.Multiplier;
             ScreenShaker.screenshaker.cameraShake(0.3f, 1f);
             ControllerRumble.controllerrumble.Rumble(0.4f, 0.7f, 0.2f);
             gameObject.SetActive(false);
