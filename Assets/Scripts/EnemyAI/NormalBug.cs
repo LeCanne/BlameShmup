@@ -90,7 +90,7 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
         if(other.gameObject.tag == "PlayerBullet")
         {
             healthPoints--;
-            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.3f);
+            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.2f);
             flashenemy.CallDamageFlash();
             Destroy(other.gameObject);
         }

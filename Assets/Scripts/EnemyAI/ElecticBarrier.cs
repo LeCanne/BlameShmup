@@ -108,7 +108,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
         {
             if (other.gameObject.tag == "PlayerBullet")
             {
-                AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.3f);
+                AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.2f);
                 health--;
                 flashEnemy.CallDamageFlash();
                 Destroy(other.gameObject);
