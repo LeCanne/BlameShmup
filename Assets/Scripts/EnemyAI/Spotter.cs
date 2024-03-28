@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Spotter : MonoBehaviour, InterfaceEnemy
 {
@@ -11,8 +12,10 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
     private FlashEnemy flashEnemy;
     private Animator animator;
     private SpriteRenderer sprRend;
+    public Light2D lightin;
 
     public float timerbullet;
+    float timerdamage;
     public int healthPoint;
     public bool newPos = true, firstcheck = true;
     private Vector3 newposition;
@@ -39,6 +42,16 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
     // Update is called once per frame
     void Update()
     {
+
+        if(lightin.enabled == true)
+        {
+            timerdamage += Time.deltaTime;
+            if(timerdamage > 0.1f)
+            {
+                lightin.enabled = false;
+                timerdamage = 0;
+            }
+        }
       CheckHP();
         timerbullet += Time.deltaTime;
         Vector3 v = transform.position;
@@ -153,6 +166,7 @@ public class Spotter : MonoBehaviour, InterfaceEnemy
                 healthPoint--;
                 
                 Destroy(other.gameObject);
+                lightin.enabled = true;
             }
         }
        
