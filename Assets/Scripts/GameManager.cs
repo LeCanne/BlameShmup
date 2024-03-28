@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
         WaveManager.wavenumber = 0;
         WaveManager.wavemanagement = true;
         Time.timeScale = 1;
+        DisplayBoss.enableBossBar = false;
         ScoreManager.Score = 0;
         SceneManager.LoadScene(sceneChosen);
         
