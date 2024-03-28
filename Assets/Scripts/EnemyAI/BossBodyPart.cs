@@ -46,7 +46,7 @@ public class BossBodyPart : MonoBehaviour
             Destroy(other.gameObject);
             HP--;
             flashEnemy.CallDamageFlash();
-            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.4f);
+            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.2f);
             timerdamage = 0;
             lite.enabled = true;
         }
