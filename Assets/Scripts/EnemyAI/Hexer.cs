@@ -71,7 +71,7 @@ public class Hexer : MonoBehaviour, InterfaceEnemy
         {
             isDead();
             ParticleManager.m_Instance.ParticleSpawner(ExplosionFX, GetComponent<Collider2D>(), 1);
-            AudioManager.instance.PlaySoundFXClip(damageFX, transform, 0.2f);
+            AudioManager.instance.PlaySoundFXClip(damageFX, transform, 0.5f);
             ScreenShaker.screenshaker.cameraShake(0.3f, 1.4f);
             ControllerRumble.controllerrumble.Rumble(0.4f, 0.7f, 0.2f);
             ScoreManager.Score += Score * ScoreManager.Multiplier;
@@ -94,7 +94,7 @@ public class Hexer : MonoBehaviour, InterfaceEnemy
     {
         if (collision.gameObject.tag == "PlayerBullet")
         {
-            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.2f);
+            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.3f);
             health--;
             flashenemy.CallDamageFlash();
             Destroy(collision.gameObject);

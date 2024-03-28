@@ -28525,7 +28525,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9301be502cbadb347bb1314907c5094e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.55
+  m_Volume: 0.167
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -29399,6 +29399,10 @@ PrefabInstance:
       propertyPath: mouseCursor
       value: 
       objectReference: {fileID: 672695785}
+    - target: {fileID: 3058957253520586696, guid: 2547ed97b8c2dca4a8196cf78b15e829, type: 3}
+      propertyPath: inputDedZone
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3058957253520586696, guid: 2547ed97b8c2dca4a8196cf78b15e829, type: 3}
       propertyPath: projectileCooldown
       value: 0.1

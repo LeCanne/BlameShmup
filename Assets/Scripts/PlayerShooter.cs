@@ -21,6 +21,8 @@ public class PlayerShooter : MonoBehaviour
 
     [Header("directionControllerSupport")]
     public Transform twistPoint;
+    public float inputDedZone;
+    private Vector2 rightStickInput;
 
     // Start is called before the first frame update
     void Start()
@@ -65,28 +67,18 @@ public class PlayerShooter : MonoBehaviour
             mouseCursor.SetActive(false);
             float HorizonAxis = Input.GetAxis("HorizontalJoystick");
             float VerticalAxis = Input.GetAxis("VerticalJoystick");
-
-           if(HorizonAxis == 0f && VerticalAxis == 0)
+            
+            rightStickInput = new Vector2(VerticalAxis, HorizonAxis);
+            if(rightStickInput.magnitude < inputDedZone)
             {
-                Vector3 currentRotation = twistPoint.transform.localEulerAngles;
-                Vector3 homeRotation;
-
-                if(currentRotation.z > 180f)
-                {
-                    homeRotation = new Vector3(0,0,359.999f);
-                }
-                else
-                {
-                    homeRotation = Vector3.zero;
-                }
-
-                //twistPoint.transform.localEulerAngles = Vector3.Slerp(currentRotation, homeRotation, Time.deltaTime * 3);
+                rightStickInput = Vector2.zero;
             }
-
-            else
+            else if (Mathf.Abs(HorizonAxis) > 0f || Mathf.Abs(VerticalAxis) > 0)
             {
+                Vector3 moveVector = (Vector3.left * rightStickInput.x - Vector3.down * rightStickInput.y);
 
-                twistPoint.transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Atan2(HorizonAxis, VerticalAxis) * -190 / Mathf.PI + 90);
+                twistPoint.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveVector);
+
             }
         }
        
@@ -96,15 +88,19 @@ public class PlayerShooter : MonoBehaviour
     public void Shooting()
     {
         timerProjectile += Time.deltaTime;
-        if (( Input.GetAxis("VerticalJoystick") != 0 || Input.GetAxis("HorizontalJoystick") != 0 || Input.GetButton("Fire1")) && projectileCooldown <= timerProjectile)
+        if (rightStickInput.magnitude > inputDedZone)
         {
-            shootnoise.Play();
-            spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
-            spawnedBullet.GetComponent<Bullet>().speed = speed;
-            spawnedBullet.GetComponent<Bullet>().bulletlife = bulletLife;
-            spawnedBullet.transform.rotation = transform.rotation;
-            timerProjectile = 0;
+            if ((Input.GetAxis("VerticalJoystick") != 0 || Input.GetAxis("HorizontalJoystick") != 0 || Input.GetButton("Fire1")) && projectileCooldown <= timerProjectile)
+            {
+                shootnoise.Play();
+                spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+                spawnedBullet.GetComponent<Bullet>().speed = speed;
+                spawnedBullet.GetComponent<Bullet>().bulletlife = bulletLife;
+                spawnedBullet.transform.rotation = transform.rotation;
+                timerProjectile = 0;
+            }
         }
+           
 
 
 

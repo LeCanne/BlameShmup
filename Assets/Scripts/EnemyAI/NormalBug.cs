@@ -79,7 +79,7 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
            ScreenShaker.screenshaker.cameraShake(0.3f, 0.7f);
             ControllerRumble.controllerrumble.Rumble(0.2f, 0.4f, 0.15f);
             ScoreManager.Score += Score * ScoreManager.Multiplier;
-            AudioManager.instance.PlaySoundFXClip(DamageFX, transform, 0.2f);
+            AudioManager.instance.PlaySoundFXClip(DamageFX, transform, 0.5f);
             gameObject.SetActive(false);
         }
     }
@@ -90,7 +90,7 @@ public class NormalBug : MonoBehaviour, InterfaceEnemy
         if(other.gameObject.tag == "PlayerBullet")
         {
             healthPoints--;
-            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.2f);
+            AudioManager.instance.PlaySoundFXClip(ouchFX, transform, 0.3f);
             flashenemy.CallDamageFlash();
             Destroy(other.gameObject);
         }
