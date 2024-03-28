@@ -92,7 +92,7 @@ public class ElecticBarrier : MonoBehaviour, InterfaceEnemy
             ParticleManager.m_Instance.ParticleSpawner(ExplodeFX, GetComponent<Collider2D>(), 2);
             ScreenShaker.screenshaker.cameraShake(0.3f, 1f);
             ControllerRumble.controllerrumble.Rumble(0.4f, 0.7f, 0.2f);
-            ScoreManager.Score += score;
+            ScoreManager.Score += score * ScoreManager.Multiplier;
             AudioManager.instance.PlaySoundFXClip(damageFX, transform, 0.2f);
             gameObject.SetActive(false);
           

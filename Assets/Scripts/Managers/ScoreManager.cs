@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     public static int Score;
+    public static int Multiplier;
+    public int lifeTreshold = 5000;
     public float maxScore;
     public float timer;
+    public float timerMulti;
     public bool done = true;
 
+    public float multi;
+
+    public PlayerMovement playermov;
     public GameObject scoreTxt;
-    private Vector3 originalScale;
-    private Vector3 newScale;
+    public GameObject multiplier;
+    public Vector3 originalScale;
+    public Vector3 newScale;
+    public Vector3 maxScale;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,15 +36,29 @@ public class ScoreManager : MonoBehaviour
     {
         
         timer += Time.deltaTime;
+        timerMulti += Time.deltaTime;
+        if(timerMulti > 0)
+        {
+            Multiplier = 1;
+        }
         if(Score > maxScore)
         {
+
+            Debug.Log(maxScore);
+            
+            timerMulti = -3;
+            if (Multiplier < 5)
+            {
+                Multiplier += 1;
+            }
             maxScore = Score;
             
-            if(scoreTxt.transform.localScale.magnitude < new Vector3(2, 2, 2).magnitude)
+
+            if (scoreTxt.transform.localScale.magnitude < maxScale.magnitude)
             {
                 newScale = scoreTxt.transform.localScale;
                
-                scoreTxt.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
+                scoreTxt.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
                 
 
                 done = false;
@@ -63,6 +86,13 @@ public class ScoreManager : MonoBehaviour
         if(timer > 1)
         {
             scoreTxt.transform.localScale = Vector3.Lerp(scoreTxt.transform.localScale, originalScale, 3 * Time.deltaTime);
+        }
+
+        if(Score > lifeTreshold)
+        {
+            playermov.PlayerHealth += 1;
+            lifeTreshold += lifeTreshold;
+
         }
     }
 }

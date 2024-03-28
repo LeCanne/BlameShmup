@@ -59,7 +59,11 @@ public class PlayerMovement : MonoBehaviour
      
         if ((inputY >= 0 && hit1.collider == null) || (inputY <= 0 && hit2.collider == null))
         {
-               rb.MovePosition(rb.position + new Vector2(0, inputY) * speed * Time.fixedDeltaTime);
+            if(inputY != 0)
+            {
+                rb.MovePosition(rb.position + new Vector2(0, inputY) * speed * Time.fixedDeltaTime);
+            }
+               
             
         }
          
