@@ -20,13 +20,16 @@ public class ScoreManager : MonoBehaviour
     public GameObject scoreTxt;
     public GameObject multiplier;
     public Vector3 originalScale;
+    public Vector3 originalScale2;
     public Vector3 newScale;
+    public Vector3 newScale2;
     public Vector3 maxScale;
     // Start is called before the first frame update
     void Start()
     {
         originalScale = Vector3.zero;
         originalScale += scoreTxt.transform.localScale;
+        originalScale2 += multiplier.transform.localScale;
         timer = 2;
        
     }
@@ -40,6 +43,7 @@ public class ScoreManager : MonoBehaviour
         if(timerMulti > 0)
         {
             Multiplier = 1;
+            multiplier.transform.localScale = Vector3.Lerp(multiplier.transform.localScale, originalScale2, 20 * Time.deltaTime);
         }
         if(Score > maxScore)
         {
@@ -50,6 +54,8 @@ public class ScoreManager : MonoBehaviour
             if (Multiplier < 5)
             {
                 Multiplier += 1;
+                newScale2 = multiplier.transform.localScale;
+                multiplier.transform.localScale += new Vector3(1f, 1f, 1f);
             }
             maxScore = Score;
             
@@ -59,6 +65,7 @@ public class ScoreManager : MonoBehaviour
                 newScale = scoreTxt.transform.localScale;
                
                 scoreTxt.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+                
                 
 
                 done = false;
@@ -74,6 +81,7 @@ public class ScoreManager : MonoBehaviour
             if(timer < 0.3f)
             {
                 scoreTxt.transform.localScale = Vector3.Lerp(scoreTxt.transform.localScale, newScale - new Vector3(0.02f,0.02f), 3 * Time.deltaTime);
+                multiplier.transform.localScale = Vector3.Lerp(multiplier.transform.localScale, newScale2 - new Vector3(0.02f, 0.02f), 3 * Time.deltaTime);
             }
             else
             {
@@ -91,7 +99,7 @@ public class ScoreManager : MonoBehaviour
         if(Score > lifeTreshold)
         {
             playermov.PlayerHealth += 1;
-            lifeTreshold += lifeTreshold;
+            lifeTreshold += 5000;
 
         }
     }

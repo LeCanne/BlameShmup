@@ -8,6 +8,7 @@ public class TimeManager : MonoBehaviour
     float timestop;
     public GameObject LoseScreen;
     public AudioSource music;
+    public AudioSource bossMusic;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class TimeManager : MonoBehaviour
         if(music.pitch > 0.7f)
         {
             music.pitch = Time.timeScale;
+            bossMusic.pitch = Time.timeScale;
         }
        
         if (lost == true)

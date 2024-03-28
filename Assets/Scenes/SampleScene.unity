@@ -1593,7 +1593,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -59.400146, y: -134}
+  m_AnchoredPosition: {x: -97, y: -159}
   m_SizeDelta: {x: 48.42, y: 46.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &321244246
@@ -11533,10 +11533,10 @@ MonoBehaviour:
   multi: 0
   playermov: {fileID: 1926644576}
   scoreTxt: {fileID: 1300554226}
-  multiplier: {fileID: 0}
+  multiplier: {fileID: 321244244}
   originalScale: {x: 0, y: 0, z: 0}
   newScale: {x: 0, y: 0, z: 0}
-  maxScale: {x: 2, y: 2, z: 2}
+  maxScale: {x: 1.8, y: 1.8, z: 1.8}
 --- !u!4 &1006592970
 Transform:
   m_ObjectHideFlags: 0
@@ -23327,6 +23327,7 @@ MonoBehaviour:
   lost: 0
   LoseScreen: {fileID: 655340693}
   music: {fileID: 196299165}
+  bossMusic: {fileID: 2033675707}
 --- !u!4 &1500823734
 Transform:
   m_ObjectHideFlags: 0
