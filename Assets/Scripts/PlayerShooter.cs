@@ -88,7 +88,7 @@ public class PlayerShooter : MonoBehaviour
     public void Shooting()
     {
         timerProjectile += Time.deltaTime;
-        if (rightStickInput.magnitude > inputDedZone)
+        if (rightStickInput.magnitude > inputDedZone || Gamepad.current == null)
         {
             if ((Input.GetAxis("VerticalJoystick") != 0 || Input.GetAxis("HorizontalJoystick") != 0 || Input.GetButton("Fire1")) && projectileCooldown <= timerProjectile)
             {
