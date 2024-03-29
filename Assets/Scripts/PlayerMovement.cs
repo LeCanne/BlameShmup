@@ -87,8 +87,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        hit1 = Physics2D.Raycast(transform.position, transform.up, 0.3f, collidWalls);
-        hit2 = Physics2D.Raycast(transform.position, -transform.up, 0.3f, collidWalls);
+        hit1 = Physics2D.Raycast(transform.position, transform.up,  1f, collidWalls);
+        hit2 = Physics2D.Raycast(transform.position, -transform.up, 1f, collidWalls);
         inputY = Input.GetAxisRaw("Vertical");
         textdone.text = PlayerHealth.ToString("x 00");
         if(alive == true)
@@ -130,7 +130,8 @@ public class PlayerMovement : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, 20, layerMask);
             distanceLeft = Vector3.Distance(new Vector2(transform.position.x, 0), new Vector2(hit.point.x, 0));
            
-          
+          if(hit.collider != null)
+            {
                 if (hit.collider.gameObject?.tag == "Wall")
                 {
                     Debug.Log("no");
@@ -143,6 +144,8 @@ public class PlayerMovement : MonoBehaviour
                     transform.position = Vector3.Lerp(transform.position, hit.point, Time.deltaTime / 0.05f);
                     gameObject.transform.parent = hit.collider.gameObject.transform;
                 }
+            }
+                
             
             
            
@@ -152,17 +155,21 @@ public class PlayerMovement : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 20, layerMask);
             distanceRight = Vector3.Distance(new Vector2(transform.position.x, 0), new Vector2(hit.point.x, 0));
-            
-            if (hit.collider.gameObject?.tag == "Wall")
+            if (hit.collider != null)
             {
-                Debug.Log("yes");
 
-                SpriteRend.flipX = true;
-                arm.flipY = true;
-                Wheels.flipX = true;
-                shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
-                transform.position = Vector3.Lerp(transform.position, hit.point, Time.deltaTime / 0.05f);
-                gameObject.transform.parent = hit.collider.gameObject.transform;
+
+                if (hit.collider.gameObject?.tag == "Wall")
+                {
+                    Debug.Log("yes");
+
+                    SpriteRend.flipX = true;
+                    arm.flipY = true;
+                    Wheels.flipX = true;
+                    shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
+                    transform.position = Vector3.Lerp(transform.position, hit.point, Time.deltaTime / 0.05f);
+                    gameObject.transform.parent = hit.collider.gameObject.transform;
+                }
             }
            
         }

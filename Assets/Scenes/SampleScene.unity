@@ -3336,7 +3336,7 @@ Transform:
   m_GameObject: {fileID: 532070025}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.5623, y: -0.0554, z: 0}
+  m_LocalPosition: {x: 9.4924, y: -0.0554, z: 0}
   m_LocalScale: {x: 2.9579713, y: 15.411387, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3598,7 +3598,7 @@ MonoBehaviour:
   - {fileID: 1551155692}
   - {fileID: 666531697}
   WinScreen: {fileID: 1747664815}
-  wavenumber2: 1
+  wavenumber2: 8
   hasplayed: 0
   musicLevel: {fileID: 196299165}
   BossMusic: {fileID: 2033675707}
@@ -10792,7 +10792,7 @@ Transform:
   m_GameObject: {fileID: 973016026}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.61, z: 0}
+  m_LocalPosition: {x: 0, y: 0.84, z: 0}
   m_LocalScale: {x: 15.975886, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11400,7 +11400,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
