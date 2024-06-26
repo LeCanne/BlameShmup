@@ -15,6 +15,8 @@ public class PlayerShooter : MonoBehaviour
     public AudioSource shootnoise;
     public PlayerMovement player;
 
+    private bool inprocess;
+
     [Header("bulletProperties")]
     public float speed;
     public float bulletLife;
@@ -23,6 +25,7 @@ public class PlayerShooter : MonoBehaviour
     public Transform twistPoint;
     public float inputDedZone;
     private Vector2 rightStickInput;
+    private Vector2 inputexternalrightstick;
 
     // Start is called before the first frame update
     void Start()
@@ -65,10 +68,10 @@ public class PlayerShooter : MonoBehaviour
         {
             Cursor3D.SetActive(true);
             mouseCursor.SetActive(false);
-            float HorizonAxis = Input.GetAxis("HorizontalJoystick");
-            float VerticalAxis = Input.GetAxis("VerticalJoystick");
-            
-            rightStickInput = new Vector2(VerticalAxis, HorizonAxis);
+            float HorizonAxis = inputexternalrightstick.y;
+            float VerticalAxis = inputexternalrightstick.x;
+
+            rightStickInput = new Vector2(HorizonAxis, VerticalAxis);
             if(rightStickInput.magnitude < inputDedZone)
             {
                 rightStickInput = Vector2.zero;
@@ -90,7 +93,7 @@ public class PlayerShooter : MonoBehaviour
         timerProjectile += Time.deltaTime;
         if (rightStickInput.magnitude > inputDedZone || Gamepad.current == null)
         {
-            if ((Input.GetAxis("VerticalJoystick") != 0 || Input.GetAxis("HorizontalJoystick") != 0 || Input.GetButton("Fire1")) && projectileCooldown <= timerProjectile)
+            if (( inprocess == true || rightStickInput.magnitude != 0) && projectileCooldown <= timerProjectile)
             {
                 shootnoise.Play();
                 spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
@@ -104,5 +107,25 @@ public class PlayerShooter : MonoBehaviour
 
 
 
+    }
+
+    public void ShootingV2(InputAction.CallbackContext shoot)
+    {
+        
+        if (shoot.performed)
+        {
+            inprocess = true;
+         
+        }
+
+        if (shoot.canceled)
+        {
+            inprocess = false;
+        }
+    }
+
+    public void ShootAim(InputAction.CallbackContext aim)
+    {
+        inputexternalrightstick = aim.ReadValue<Vector2>();
     }
 }

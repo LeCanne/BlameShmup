@@ -64,6 +64,7 @@ public class WaveManager : MonoBehaviour
         {
             if (hasplayed == false && musicLevel.volume < 0.1f)
             {
+              
                 BossMusic.Play();
                 hasplayed = true;
             }
@@ -82,7 +83,7 @@ public class WaveManager : MonoBehaviour
 
 
                 BossMusic.volume -= 0.1f;
-
+                musicLevel.volume = 0.1f;
                 timer = 0;
             }
         }

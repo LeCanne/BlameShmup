@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject shooter;
     public GameObject particle1, particle2;
     public float timer;
-    private float inputY;
+    private Vector2 inputY;
     private Collider2D collisiontoget;
     public LayerMask layerMask;
     public LayerMask collidWalls;
@@ -37,15 +37,15 @@ public class PlayerMovement : MonoBehaviour
     float distanceRight;
     private RaycastHit2D hit1, hit2;
     private bool gothit, changeBlink;
-        
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         SpriteRend = GetComponent<SpriteRenderer>();
         collisiontoget = GetComponent<CircleCollider2D>();
-       
+
     }
 
     // Update is called once per frame
@@ -56,42 +56,42 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-     
-        if ((inputY >= 0 && hit1.collider == null) || (inputY <= 0 && hit2.collider == null))
+
+        if ((inputY.y >= 0 && hit1.collider == null) || (inputY.y <= 0 && hit2.collider == null))
         {
-            if(inputY != 0)
+            if (inputY.y != 0)
             {
-                rb.MovePosition(rb.position + new Vector2(0, inputY) * speed * Time.fixedDeltaTime);
+                rb.MovePosition(rb.position + inputY * speed * Time.fixedDeltaTime);
             }
-               
-            
+
+
         }
-         
-        
-          
-
-        
-       
-       
-       
-           
-        
-        
 
 
 
 
 
-       
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     private void Update()
     {
-        hit1 = Physics2D.Raycast(transform.position, transform.up,  1f, collidWalls);
+        hit1 = Physics2D.Raycast(transform.position, transform.up, 1f, collidWalls);
         hit2 = Physics2D.Raycast(transform.position, -transform.up, 1f, collidWalls);
-        inputY = Input.GetAxisRaw("Vertical");
+       
         textdone.text = PlayerHealth.ToString("x 00");
-        if(alive == true)
+        if (alive == true)
         {
             Grapple();
             CheckHealth();
@@ -104,15 +104,16 @@ public class PlayerMovement : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -20, 0), 1 * Time.deltaTime);
             collisiontoget.enabled = false;
         }
-        
+
     }
 
-    public void Grapple()
+    public void Move(InputAction.CallbackContext move)
     {
-
-       
-       
-        if ((Input.GetButtonDown("Fire2") && cooldown <= 0))
+        inputY.y = move.ReadValue<Vector2>().y;
+    }
+    public void GrapplingTriggered(InputAction.CallbackContext pressed)
+    {
+        if (pressed.started && cooldown <= 0)
         {
             dash.Play();
             distanceRight = 1;
@@ -121,10 +122,17 @@ public class PlayerMovement : MonoBehaviour
             cooldown = 0.5f;
             particle1.transform.localPosition = -particle1.transform.localPosition;
             particle2.transform.localPosition = new Vector3(-particle2.transform.localPosition.x, particle2.transform.localPosition.y);
-           
-           
+
+
 
         }
+    }
+    public void Grapple()
+    {
+
+       
+       
+     
         if (onleft == true && distanceLeft > 0.5f)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.right, 20, layerMask);
@@ -200,12 +208,6 @@ public class PlayerMovement : MonoBehaviour
 
         
     }
-            
-        
-       
-      
-
-
 
     public void CheckHealth()
     {
@@ -227,13 +229,13 @@ public class PlayerMovement : MonoBehaviour
 
         //Damage over time
 
-        
+
     }
     public void Invincibility()
     {
-        if(timer < 0 )
+        if (timer < 0)
         {
-            if(gothit == false && PlayerHealth > 0)
+            if (gothit == false && PlayerHealth > 0)
             {
                 PlayerHealth--;
                 gothit = true;
@@ -241,13 +243,13 @@ public class PlayerMovement : MonoBehaviour
 
             timerBlink += Time.deltaTime;
 
-            if(timerBlink > 0.05f)
+            if (timerBlink > 0.05f)
             {
                 changeBlink = !changeBlink;
 
-                if(changeBlink == true)
+                if (changeBlink == true)
                 {
-                   
+
                     Color alpha = SpriteRend.color;
                     animIcon.Play("Life_hurt");
                     alpha.a = 0.1f;
@@ -255,8 +257,8 @@ public class PlayerMovement : MonoBehaviour
                     Wheels.color = alpha;
                     arm.color = alpha;
                 }
-                
-                if(changeBlink == false)
+
+                if (changeBlink == false)
                 {
                     Color alpha = SpriteRend.color;
                     animIcon.Play("Life_hurt");
@@ -265,28 +267,30 @@ public class PlayerMovement : MonoBehaviour
                     Wheels.color = alpha;
                     arm.color = alpha;
                 }
-               
-              
+
+
 
                 gameObject.layer = 6;
 
                 timerBlink = 0;
             }
-           
+
         }
         else
         {
             gothit = false;
             animIcon.Play("Life_idle");
-            Color alpha =  SpriteRend.color;
+            Color alpha = SpriteRend.color;
             alpha.a = 1f;
             SpriteRend.color = alpha;
             Wheels.color = alpha;
             arm.color = alpha;
             gameObject.layer = 2;
-                
+
         }
     }
+   
+
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
