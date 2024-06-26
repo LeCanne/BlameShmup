@@ -134,14 +134,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (hit.collider.gameObject?.tag == "Wall")
                 {
-                    Debug.Log("no");
+                    
 
 
                     SpriteRend.flipX = false;
                     arm.flipY = false;
                     Wheels.flipX = false;
                     shooter.transform.localPosition = new Vector3(0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
-                    transform.position = Vector3.Lerp(transform.position, hit.point, Time.deltaTime / 0.05f);
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(hit.point.x + 0.1f, hit.point.y), Time.deltaTime / 0.05f);
                     gameObject.transform.parent = hit.collider.gameObject.transform;
                 }
             }
@@ -161,13 +161,13 @@ public class PlayerMovement : MonoBehaviour
 
                 if (hit.collider.gameObject?.tag == "Wall")
                 {
-                    Debug.Log("yes");
+                   
 
                     SpriteRend.flipX = true;
                     arm.flipY = true;
                     Wheels.flipX = true;
                     shooter.transform.localPosition = new Vector3(-0.0554f, shooter.transform.localPosition.y, shooter.transform.localPosition.z);
-                    transform.position = Vector3.Lerp(transform.position, hit.point, Time.deltaTime / 0.05f);
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(hit.point.x - 0.1f, hit.point.y), Time.deltaTime / 0.05f);
                     gameObject.transform.parent = hit.collider.gameObject.transform;
                 }
             }
